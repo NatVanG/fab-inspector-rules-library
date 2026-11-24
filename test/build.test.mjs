@@ -42,6 +42,28 @@ test("embed query parameter enables the embed layout only for true", async () =>
   }
 });
 
+test("dark theme query parameter works independently and with embed mode", async () => {
+  const html = await readFile(new URL("../web/index.html", import.meta.url), "utf8");
+  const script = html.match(/<script>([\s\S]*?)<\/script>/)?.[1];
+  assert.ok(script);
+  for (const [search, dark, embed] of [
+    ["", false, false],
+    ["?theme=dark", true, false],
+    ["?embed=true&theme=dark", true, true],
+    ["?theme=light&embed=true", false, true],
+    ["?theme=true", false, false],
+  ]) {
+    const classes = new Set();
+    runInNewContext(script, {
+      URLSearchParams,
+      location: { search },
+      document: { documentElement: { classList: classes } },
+    });
+    assert.equal(classes.has("dark-mode"), dark, search);
+    assert.equal(classes.has("embed-mode"), embed, search);
+  }
+});
+
 test("build discovers nested rulesets and preserves original downloads and unknown fields", async t => {
   const root = await fixture(t);
   await cp(new URL("../web", import.meta.url), path.join(root, "web"), { recursive: true });
