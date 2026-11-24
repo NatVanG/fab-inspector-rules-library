@@ -38,6 +38,12 @@ test("build discovers nested rulesets and preserves original downloads and unkno
   const catalog = JSON.parse(await readFile(path.join(root, "dist", "catalog.json"), "utf8"));
   assert.deepEqual(catalog.rulesets, sets);
   assert.match(await readFile(path.join(root, "dist", "index.html"), "utf8"), /src="\.\/app.js"/);
+  for (const asset of ["fab-inspector.png", "microsoft-fabric.svg", "NOTICE.txt"]) {
+    assert.deepEqual(
+      await readFile(path.join(root, "dist", "assets", asset)),
+      await readFile(path.join(root, "web", "assets", asset)),
+    );
+  }
   await rm(path.join(root, "rulesets", relative));
   await build(root);
   await assert.rejects(readFile(path.join(root, "dist", "rulesets", relative)), { code: "ENOENT" });

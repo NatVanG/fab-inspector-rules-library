@@ -6,21 +6,32 @@
     <meta name="description" content="Discover, inspect, and download reusable Fab Inspector rules for Microsoft Fabric.">
     <meta name="color-scheme" content="light">
     <title>Fab Inspector | Rules Library</title>
+    <link rel="icon" type="image/png" href="./assets/fab-inspector.png">
     <link rel="stylesheet" href="./styles.css">
     <script type="module" src="./app.js"></script>
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href="./"><span class="brand-icon" aria-hidden="true">fi</span><span>Fab Inspector <span class="brand-divider">/</span> <strong>Rules Library</strong></span></a>
+      <a class="brand" href="./"><img class="brand-icon" src="./assets/fab-inspector.png" alt="" width="48" height="48"><span>Fab Inspector <span class="brand-divider">/</span> <strong>Rules Library</strong></span></a>
       <a class="github-link" href="https://github.com/NatVanG/fab-inspector-rules-library">View on GitHub <span aria-hidden="true">&#8599;</span></a>
     </header>
     <main>
       <section class="hero" aria-labelledby="page-title">
-        <div class="eyebrow"><span class="status-dot"></span> THE FAB INSPECTOR COMMUNITY LIBRARY</div>
-        <h1 id="page-title">Better checks.<br><span>Stronger Fabric.</span></h1>
-        <p>Reusable rules for a healthier Microsoft Fabric estate.<br>Find a check, see how it works, and make it yours.</p>
-        <div class="hero-footer"><a href="https://github.com/NatVanG/fab-inspector">About Fab Inspector <span aria-hidden="true">&#8599;</span></a><span>Open source. Ready to reuse.</span></div>
-        <div class="hero-decoration" aria-hidden="true"><div>{ <span>rules</span> }</div><small>DISCOVER / INSPECT / REUSE</small></div>
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="status-dot"></span> THE FAB INSPECTOR COMMUNITY LIBRARY</div>
+          <h1 id="page-title">Better checks.<br><span>Stronger Fabric.</span></h1>
+          <p>Reusable checks for Microsoft Fabric items and settings.<br>Find a rule, see how it works, and make it yours.</p>
+          <div class="hero-footer"><a href="https://github.com/NatVanG/fab-inspector">About Fab Inspector <span aria-hidden="true">&#8599;</span></a><span>Open source. Ready to reuse.</span></div>
+        </div>
+        <figure class="inspection-flow">
+          <div class="flow-diagram">
+            <div class="flow-product"><img src="./assets/fab-inspector.png" alt="" width="80" height="80"><strong>Fab Inspector</strong></div>
+            <div class="flow-rules"><span>JSON rules</span><span class="flow-arrow" aria-hidden="true">&#8594;</span></div>
+            <div class="flow-product"><img src="./assets/microsoft-fabric.svg" alt="" width="80" height="80"><strong>Microsoft Fabric</strong></div>
+          </div>
+          <figcaption>Fab Inspector applies rules to<br><strong>Fabric items &amp; settings</strong></figcaption>
+          <p>Discover here. Run with Fab Inspector.</p>
+        </figure>
       </section>
       <section class="library" aria-labelledby="library-title">
         <div class="library-heading"><div><div class="eyebrow">EXPLORE THE COLLECTION</div><h2 id="library-title">The rule library</h2></div><p id="catalog-summary" aria-live="polite">Loading the collection...</p></div>
@@ -40,7 +51,7 @@
         </div>
       </section>
     </main>
-    <footer><span>Fab Inspector <span aria-hidden="true">/</span> Rules Library</span><a href="https://github.com/NatVanG/fab-inspector-rules-library/blob/main/LICENSE">Open source under the MIT license</a></footer>
+    <footer><span>Fab Inspector <span aria-hidden="true">/</span> Rules Library</span><span>Community project. Not affiliated with or supported by Microsoft.</span><a href="https://github.com/NatVanG/fab-inspector-rules-library/blob/main/LICENSE">MIT license</a><a href="./assets/NOTICE.txt">Logo attribution</a></footer>
     <dialog id="detail" aria-labelledby="detail-title">
       <div class="dialog-heading"><div><div id="detail-kind" class="eyebrow"></div><h2 id="detail-title"></h2></div><button id="close-detail" class="close-button" type="button" aria-label="Close preview">&#215;</button></div>
       <p id="detail-description"></p><div id="detail-meta" class="tags"></div>

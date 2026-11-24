@@ -1,4 +1,4 @@
-import { readdir, readFile, mkdir, writeFile, copyFile, rm } from "node:fs/promises";
+import { readdir, readFile, mkdir, writeFile, copyFile, cp, rm } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -43,6 +43,7 @@ export async function build(root) {
   for (const file of ["index.html", "styles.css", "app.js"]) {
     await copyFile(path.join(root, "web", file), path.join(output, file));
   }
+  await cp(path.join(root, "web", "assets"), path.join(output, "assets"), { recursive: true });
   for (const ruleset of rulesets) {
     const target = path.join(output, "rulesets", ruleset.path);
     await mkdir(path.dirname(target), { recursive: true });
