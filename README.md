@@ -105,6 +105,8 @@ All application and download paths are relative, supporting both project Pages
 URLs and custom domains. The build copies only the web client, generated catalog
 and ruleset JSON into `dist/`. No server, API key or runtime GitHub API calls are
 needed. Fonts and styling have no third-party runtime dependencies.
+The build adds content-based version URLs to scripts and styles so deployments
+do not pair new filter markup with stale cached JavaScript.
 
 ## Branding
 
