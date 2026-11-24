@@ -8,6 +8,20 @@ JSON, and filter by item type, ruleset and enabled/disabled status. JSON preview
 include a copy action. Individual rules download as valid `{"rules": [...]}`
 rulesets; whole-ruleset downloads preserve the original file, including metadata.
 Filters affect browsing only, never the contents of a whole-ruleset download.
+In the **Rulesets** view, **Copy URL** copies a raw GitHub URL for the whole
+ruleset. Choose **Branch head (main)** for a URL that follows future commits,
+or **Current commit SHA** for a URL pinned to the commit used to build the site.
+The SHA is embedded at build time, not fetched from GitHub while browsing.
+
+Select **Include in catalog** on multiple rulesets, optionally edit the catalog
+name, and use **Download catalog JSON**. Selections survive search, filters and
+view changes; **Clear selection** removes them. The downloaded file follows
+[Fab Inspector's catalog format](https://github.com/NatVanG/fab-inspector/blob/main/ExampleRules/23-RulesCatalog.json):
+`{"name": "...", "ruleSets": [{"name": "...", "type": "url", "path": "https://..."}]}`.
+It references complete source files, including disabled rules, using the chosen
+URL mode. Commit-pinned links require those files to exist in the published
+commit; uncommitted local edits are not available through GitHub URLs.
+
 The client displays rules; it does not execute them or connect to Fabric.
 
 ## Adding rulesets
