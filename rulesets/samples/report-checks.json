@@ -4,6 +4,7 @@
   "rules": [
     {
       "id": "REDUCE_PAGES",
+      "tags": ["usability"],
       "name": "Reports contain no more than 10 pages",
       "description": "Counts report pages and fails when the total exceeds the sample limit of 10.",
       "itemType": "Report",

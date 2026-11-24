@@ -2,7 +2,7 @@ import { rulesetURL, createCatalog } from "./catalog.js";
 
 const $ = selector => document.querySelector(selector);
 const state = { rulesets: [], selected: new Set(), source: null, view: "rules", ready: false };
-const controls = ["#search", "#item-type", "#ruleset", "#status", "#sort"];
+const controls = ["#search", "#item-type", "#ruleset", "#tags", "#sort"];
 let activePreview;
 let returnFocus;
 let previewVersion = 0;
@@ -173,15 +173,16 @@ function render() {
   const query = $("#search").value.trim().toLocaleLowerCase();
   const type = $("#item-type").value;
   const selectedSet = $("#ruleset").value;
-  const status = $("#status").value;
+  const tagQuery = $("#tags").value.trim().toLocaleLowerCase();
   const matchesRule = rule => (!type || itemTypes(rule).includes(type))
-    && (!status || (rule.disabled === true ? "disabled" : "enabled") === status);
+    && (!tagQuery || Array.isArray(rule.tags)
+      && rule.tags.some(tag => typeof tag === "string" && tag.toLocaleLowerCase().includes(tagQuery)));
   const matchesSearch = value => JSON.stringify(value).toLocaleLowerCase().includes(query);
   let entries = [];
   for (const set of state.rulesets) {
     if (selectedSet && set.path !== selectedSet) continue;
     if (state.view === "rulesets") {
-      if ((!type && !status || set.rules.some(matchesRule)) && matchesSearch(set)) {
+      if ((!type && !tagQuery || set.rules.some(matchesRule)) && matchesSearch(set)) {
         entries.push({ set, name: set.name });
       }
     } else {
@@ -203,14 +204,14 @@ function render() {
     results.append(...entries.map(card));
   } else {
     const empty = element("div", "empty-state");
-    const hasFilters = Boolean(query || type || selectedSet || status);
+    const hasFilters = Boolean(query || type || selectedSet || tagQuery);
     empty.append(element("span", "empty-icon", "{ }"), element("h3", "", hasFilters ? "No matches this time" : "Your next great check starts here"),
       element("p", "", hasFilters ? "Try a different search or reset your filters." : "There are no entries in this collection yet. Add a JSON ruleset to /rulesets to share it here."));
     results.append(empty);
   }
 }
 
-for (const selector of controls) $(selector).addEventListener(selector === "#search" ? "input" : "change", render);
+for (const selector of controls) $(selector).addEventListener($(selector).type === "search" ? "input" : "change", render);
 $("#reset").addEventListener("click", () => {
   for (const selector of controls) $(selector).value = selector === "#sort" ? "name" : "";
   render();
