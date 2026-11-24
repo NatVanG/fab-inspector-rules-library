@@ -4,7 +4,11 @@ A searchable, static web client for browsing and downloading reusable
 [Fab Inspector](https://github.com/NatVanG/fab-inspector) rules for Microsoft Fabric.
 
 Browse individual rules or whole rulesets, search names, IDs, descriptions and
-JSON, and filter by item type, ruleset and enabled/disabled status. JSON previews
+JSON, and filter by item type, ruleset and tags. Tag search matches partial text
+in a rule's optional `tags` string array, ignoring case and surrounding search
+whitespace. Rules without tags match only when tag search is empty. In Rulesets
+view, a ruleset matches when a rule satisfies both the item-type and tag filters.
+JSON previews
 include a copy action. Individual rules download as valid `{"rules": [...]}`
 rulesets; whole-ruleset downloads preserve the original file, including metadata.
 Filters affect browsing only, never the contents of a whole-ruleset download.
@@ -39,6 +43,7 @@ with a `rules` array of JSON objects, following Fab Inspector's format:
       "id": "CHECK_COPYJOB_JOBMODE",
       "name": "Copy jobs use Batch mode",
       "itemType": "CopyJob",
+      "tags": ["configuration", "batch"],
       "part": "copyjob-content.json",
       "test": [{ "var": "properties.jobMode" }, "Batch"]
     }
@@ -60,8 +65,8 @@ Inspector's own rule validation.
 
 `rulesets/samples/` contains seven rules across three sample rulesets: copy job
 configuration, Lakehouse shortcuts and report usability. They include enabled
-and disabled rules for trying search, item-type and status filters, previews and
-downloads.
+and disabled rules, with and without tags, for trying search, item-type and tag
+filters, previews and downloads.
 
 The rule expressions are adapted from Fab Inspector's
 [CopyJob](https://github.com/NatVanG/fab-inspector/blob/main/ExampleRules/00-CopyJob-Rules.json),
