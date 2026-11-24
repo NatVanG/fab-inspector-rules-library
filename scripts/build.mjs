@@ -2,6 +2,11 @@ import { readdir, readFile, mkdir, writeFile, copyFile, cp, rm } from "node:fs/p
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
+import { createHash } from "node:crypto";
+
+function assetVersion(content) {
+  return createHash("sha256").update(content).digest("hex").slice(0, 16);
+}
 
 export async function collectRulesets(directory, prefix = "") {
   const entries = await readdir(directory, { withFileTypes: true });
@@ -49,8 +54,19 @@ export async function build(root, {
   const output = path.join(root, "dist");
   await rm(output, { recursive: true, force: true });
   await mkdir(output, { recursive: true });
-  for (const file of ["index.html", "styles.css", "app.js", "catalog.js"]) {
-    await copyFile(path.join(root, "web", file), path.join(output, file));
+  const [html, styles, app, catalogModule] = await Promise.all(
+    ["index.html", "styles.css", "app.js", "catalog.js"]
+      .map(file => readFile(path.join(root, "web", file), "utf8")),
+  );
+  const versionedApp = app.replace('"./catalog.js"', `"./catalog.js?v=${assetVersion(catalogModule)}"`);
+  const versionedHTML = html
+    .replace('href="./styles.css"', `href="./styles.css?v=${assetVersion(styles)}"`)
+    .replace('src="./app.js"', `src="./app.js?v=${assetVersion(versionedApp)}"`);
+  for (const [file, content] of [
+    ["index.html", versionedHTML], ["styles.css", styles],
+    ["app.js", versionedApp], ["catalog.js", catalogModule],
+  ]) {
+    await writeFile(path.join(output, file), content);
   }
   await cp(path.join(root, "web", "assets"), path.join(output, "assets"), { recursive: true });
   for (const ruleset of rulesets) {

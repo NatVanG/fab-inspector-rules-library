@@ -47,7 +47,7 @@ test("build discovers nested rulesets and preserves original downloads and unkno
   assert.deepEqual(catalog.source, sourceMetadata);
   assert.equal(await readFile(path.join(root, "dist", "catalog.js"), "utf8"),
     await readFile(path.join(root, "web", "catalog.js"), "utf8"));
-  assert.match(await readFile(path.join(root, "dist", "index.html"), "utf8"), /src="\.\/app.js"/);
+  assert.match(await readFile(path.join(root, "dist", "index.html"), "utf8"), /src="\.\/app\.js\?v=[a-f0-9]{16}"/);
   for (const asset of ["fab-inspector.png", "microsoft-fabric.svg", "NOTICE.txt"]) {
     assert.deepEqual(
       await readFile(path.join(root, "dist", "assets", asset)),
@@ -66,6 +66,43 @@ test("ruleset URLs use branch head or the full commit SHA and encode nested path
     `${base}/main/rulesets/Fabric%20checks/Checks%20%231.JSON`);
   assert.equal(rulesetURL(set, sourceMetadata, "commit"),
     `${base}/${sourceMetadata.commitSha}/rulesets/Fabric%20checks/Checks%20%231.JSON`);
+});
+
+test("build invalidates cached client assets when scripts or styles change", async t => {
+  const root = await fixture(t);
+  await cp(new URL("../web", import.meta.url), path.join(root, "web"), { recursive: true });
+  async function assetURLs() {
+    await build(root, sourceMetadata);
+    const html = await readFile(path.join(root, "dist", "index.html"), "utf8");
+    const app = await readFile(path.join(root, "dist", "app.js"), "utf8");
+    return {
+      app: html.match(/src="(\.\/app\.js\?v=[a-f0-9]{16})"/)?.[1],
+      styles: html.match(/href="(\.\/styles\.css\?v=[a-f0-9]{16})"/)?.[1],
+      catalog: app.match(/from "(\.\/catalog\.js\?v=[a-f0-9]{16})"/)?.[1],
+    };
+  }
+  const original = await assetURLs();
+  for (const url of Object.values(original)) assert.ok(url);
+  assert.deepEqual(await assetURLs(), original);
+
+  const appPath = path.join(root, "web", "app.js");
+  await writeFile(appPath, `${await readFile(appPath, "utf8")}\n`);
+  const changedApp = await assetURLs();
+  assert.notEqual(changedApp.app, original.app);
+  assert.equal(changedApp.catalog, original.catalog);
+  assert.equal(changedApp.styles, original.styles);
+
+  const catalogPath = path.join(root, "web", "catalog.js");
+  await writeFile(catalogPath, `${await readFile(catalogPath, "utf8")}\n`);
+  const changedCatalog = await assetURLs();
+  assert.notEqual(changedCatalog.catalog, changedApp.catalog);
+  assert.notEqual(changedCatalog.app, changedApp.app);
+
+  const stylesPath = path.join(root, "web", "styles.css");
+  await writeFile(stylesPath, `${await readFile(stylesPath, "utf8")}\n`);
+  const changedStyles = await assetURLs();
+  assert.notEqual(changedStyles.styles, changedCatalog.styles);
+  assert.equal(changedStyles.app, changedCatalog.app);
 });
 
 test("catalog exports only selected complete rulesets in Fab Inspector's format", () => {
