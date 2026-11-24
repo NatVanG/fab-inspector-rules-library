@@ -1,5 +1,7 @@
 # Fab Inspector Rules Library
 
+Browse the library at <https://natvang.github.io/fab-inspector-rules-library/>.
+
 A searchable, static web client for browsing and downloading reusable
 [Fab Inspector](https://github.com/NatVanG/fab-inspector) rules for Microsoft Fabric.
 
@@ -39,14 +41,16 @@ The client displays rules; it does not execute them or connect to Fabric.
 
 For embedding, add `?embed=true` to the page URL to hide the navigation header,
 introductory section, and library headings. The library and footer remain available. Without
-`embed=true`, the full page is shown.
+`embed=true`, the full page is shown. In embed mode, HTTP and HTTPS links open in
+a new browser window or tab instead of navigating the embedded page; downloads
+are unaffected.
 
 Use the **Dark mode** button in the header to switch themes, or add
 `?theme=dark` to start in dark mode. Combine the parameters as
 `?embed=true&theme=dark` for a dark embedded library. Light mode is the default;
 the button changes the current page only and does not change the URL.
 
-## Adding rulesets
+## Contributing new ruleset
 
 Place valid JSON files in the root `rulesets/` directory. Nested folders and
 `.json` extensions of any case are supported. Each file must contain an object
@@ -74,8 +78,9 @@ name, the filename becomes the display name. Rules are displayed using their
 `name`, then `id`, then their position in the file. All rule properties are
 preserved. Missing `disabled` is treated as enabled, as in Fab Inspector.
 
-Commit the file and the next Pages deployment includes it automatically. No
-hand-maintained manifest is needed. Invalid JSON or an invalid ruleset shape
+Commit the file and open a pull request so the contribution can be reviewed and
+merged. After it is merged, the next Pages deployment includes it automatically.
+No hand-maintained manifest is needed. Invalid JSON or an invalid ruleset shape
 fails the build with the source filename; validation does not replace Fab
 Inspector's own rule validation.
 

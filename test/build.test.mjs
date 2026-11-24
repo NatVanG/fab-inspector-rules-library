@@ -64,6 +64,39 @@ test("dark theme query parameter works independently and with embed mode", async
   }
 });
 
+test("embed mode opens web links in a new browsing context without affecting downloads", async () => {
+  const html = await readFile(new URL("../web/index.html", import.meta.url), "utf8");
+  const scripts = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)];
+  assert.equal(scripts.length, 2);
+  for (const embed of [false, true]) {
+    const links = [
+      ...[...html.matchAll(/<a\b[^>]*href="([^"]+)"/g)].map(([, href]) => ({ href })),
+      { href: "http://example.com/" },
+      { href: "mailto:test@example.com" },
+      { href: "blob:https://example.com/id" },
+      { href: "https://example.com/download", download: true },
+    ].map(link => ({
+      ...link,
+      protocol: new URL(link.href, "https://example.com/library/").protocol,
+      relList: new Set(),
+    }));
+    runInNewContext(scripts[1][1], {
+      document: {
+        documentElement: { classList: { contains: name => name === "embed-mode" && embed } },
+        querySelectorAll: selector => {
+          assert.equal(selector, "a[href]:not([download])");
+          return links.filter(link => !link.download);
+        },
+      },
+    });
+    for (const link of links) {
+      const opensNew = embed && !link.download && ["http:", "https:"].includes(link.protocol);
+      assert.equal(link.target, opensNew ? "_blank" : undefined, link.href);
+      assert.equal(link.relList.has("noopener"), opensNew, link.href);
+    }
+  }
+});
+
 test("build discovers nested rulesets and preserves original downloads and unknown fields", async t => {
   const root = await fixture(t);
   await cp(new URL("../web", import.meta.url), path.join(root, "web"), { recursive: true });
