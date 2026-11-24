@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { mkdtemp, mkdir, writeFile, readFile, rm, cp } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
+import { runInNewContext } from "node:vm";
 import { build, collectRulesets } from "../scripts/build.mjs";
 import { createCatalog, rulesetURL } from "../web/catalog.js";
 
@@ -18,6 +19,28 @@ async function fixture(t) {
   await mkdir(path.join(root, "rulesets"));
   return root;
 }
+
+test("embed query parameter enables the embed layout only for true", async () => {
+  const html = await readFile(new URL("../web/index.html", import.meta.url), "utf8");
+  const script = html.match(/<script>([\s\S]*?)<\/script>/)?.[1];
+  assert.ok(script);
+  for (const [search, expected] of [
+    ["", false],
+    ["?embed=true", true],
+    ["?other=value&embed=true", true],
+    ["?embed=false", false],
+    ["?embed", false],
+    ["?other=true", false],
+  ]) {
+    const classes = new Set();
+    runInNewContext(script, {
+      URLSearchParams,
+      location: { search },
+      document: { documentElement: { classList: classes } },
+    });
+    assert.equal(classes.has("embed-mode"), expected, search);
+  }
+});
 
 test("build discovers nested rulesets and preserves original downloads and unknown fields", async t => {
   const root = await fixture(t);

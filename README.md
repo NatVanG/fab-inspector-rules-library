@@ -28,6 +28,10 @@ commit; uncommitted local edits are not available through GitHub URLs.
 
 The client displays rules; it does not execute them or connect to Fabric.
 
+For embedding, add `?embed=true` to the page URL to hide the navigation header
+and introductory section. The library and footer remain available. Without
+`embed=true`, the full page is shown.
+
 ## Adding rulesets
 
 Place valid JSON files in the root `rulesets/` directory. Nested folders and
