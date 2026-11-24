@@ -1,5 +1,7 @@
+import { rulesetURL, createCatalog } from "./catalog.js";
+
 const $ = selector => document.querySelector(selector);
-const state = { rulesets: [], view: "rules", ready: false };
+const state = { rulesets: [], selected: new Set(), source: null, view: "rules", ready: false };
 const controls = ["#search", "#item-type", "#ruleset", "#status", "#sort"];
 let activePreview;
 let returnFocus;
@@ -32,17 +34,43 @@ function sourceURL(set) {
   return `./rulesets/${set.path.split("/").map(encodeURIComponent).join("/")}`;
 }
 
-function downloadRule(rule) {
-  const blob = new Blob([`${JSON.stringify({ rules: [rule] }, null, 2)}\n`], { type: "application/json" });
+function downloadJSON(data, filename) {
+  const blob = new Blob([`${JSON.stringify(data, null, 2)}\n`], { type: "application/json" });
   const url = URL.createObjectURL(blob);
   const link = element("a");
   link.href = url;
-  const name = typeof rule.id === "string" ? rule.id : "rule";
-  link.download = `${name.replace(/[^a-zA-Z0-9._-]/g, "_") || "rule"}.json`;
+  link.download = filename;
   document.body.append(link);
   link.click();
   link.remove();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+function downloadRule(rule) {
+  const name = typeof rule.id === "string" ? rule.id : "rule";
+  downloadJSON({ rules: [rule] }, `${name.replace(/[^a-zA-Z0-9._-]/g, "_") || "rule"}.json`);
+}
+
+function updateSelection() {
+  const count = state.selected.size;
+  $("#selection-summary").textContent = `${count} ruleset${count === 1 ? "" : "s"} selected`;
+  $("#download-catalog").disabled = count === 0;
+  $("#clear-selection").disabled = count === 0;
+}
+
+async function copyURL(set) {
+  const url = rulesetURL(set, state.source, $("#url-mode").value);
+  $("#url-fallback").hidden = true;
+  try {
+    await navigator.clipboard.writeText(url);
+    $("#url-status").textContent = `URL copied for ${set.name}.`;
+  } catch {
+    $("#url-status").textContent = "Clipboard access failed. Copy the URL below instead.";
+    $("#failed-url").value = url;
+    $("#url-fallback").hidden = false;
+    $("#failed-url").focus();
+    $("#failed-url").select();
+  }
 }
 
 function downloadSet(set) {
@@ -116,6 +144,26 @@ function card(entry) {
   download.setAttribute("aria-label", `Download ${entry.name}`);
   download.addEventListener("click", () => entry.rule ? downloadRule(entry.rule) : downloadSet(entry.set));
   actions.append(inspect, download);
+  if (!entry.rule) {
+    const selection = element("label", "ruleset-selection");
+    const checkbox = element("input");
+    checkbox.type = "checkbox";
+    checkbox.setAttribute("aria-label", `Include ${entry.name} (${entry.set.path}) in catalog`);
+    checkbox.checked = state.selected.has(entry.set.path);
+    checkbox.addEventListener("change", () => {
+      if (checkbox.checked) state.selected.add(entry.set.path);
+      else state.selected.delete(entry.set.path);
+      updateSelection();
+    });
+    selection.append(checkbox, document.createTextNode("Include in catalog"));
+    selection.title = `Include ${entry.name} (${entry.set.path}) in catalog`;
+    top.replaceChildren(selection, element("span", "rule-total", `${entry.set.rules.length} rules`));
+    const copy = element("button", "text-button", "Copy URL");
+    copy.type = "button";
+    copy.setAttribute("aria-label", `Copy URL for ${entry.name}`);
+    copy.addEventListener("click", () => copyURL(entry.set));
+    actions.insertBefore(copy, download);
+  }
   article.append(top, title, id, element("p", "card-description", typeof description === "string" && description ? description : "Inspect the JSON to explore this check and its configuration."), source, actions);
   return article;
 }
@@ -171,6 +219,23 @@ for (const view of ["rules", "rulesets"]) $(`#${view}-view`).addEventListener("c
   state.view = view;
   render();
 });
+$("#url-mode").addEventListener("change", () => {
+  $("#url-reference").textContent = $("#url-mode").value === "commit"
+    ? `Pinned to build commit: ${state.source.commitSha}`
+    : `Tracks the latest committed rulesets on ${state.source.headRef}.`;
+  $("#url-status").textContent = "";
+  $("#url-fallback").hidden = true;
+});
+$("#clear-selection").addEventListener("click", () => {
+  state.selected.clear();
+  updateSelection();
+  render();
+});
+$("#download-catalog").addEventListener("click", () => {
+  if (!state.ready || !state.selected.size) return;
+  downloadJSON(createCatalog(state.rulesets, state.selected, state.source,
+    $("#url-mode").value, $("#catalog-name").value), "fab-inspector-catalog.json");
+});
 $("#close-detail").addEventListener("click", () => $("#detail").close());
 $("#detail").addEventListener("close", () => {
   if ($("#detail").open) return;
@@ -199,8 +264,15 @@ async function load() {
     const response = await fetch("./catalog.json");
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const catalog = await response.json();
-    if (!Array.isArray(catalog.rulesets)) throw new Error("Invalid catalog format");
+    if (!Array.isArray(catalog.rulesets) || !catalog.source?.repository
+        || !catalog.source.headRef || !/^[a-f0-9]{40}$/i.test(catalog.source.commitSha)) {
+      throw new Error("Invalid catalog format");
+    }
     state.rulesets = catalog.rulesets;
+    state.source = catalog.source;
+    $("#url-mode").options[0].textContent = `Branch head (${state.source.headRef})`;
+    $("#url-mode").disabled = false;
+    $("#url-reference").textContent = `Tracks the latest committed rulesets on ${state.source.headRef}.`;
     const ruleCount = state.rulesets.reduce((sum, set) => sum + set.rules.length, 0);
     $("#rule-count").textContent = ruleCount;
     $("#ruleset-count").textContent = state.rulesets.length;

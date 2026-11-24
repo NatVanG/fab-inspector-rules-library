@@ -39,6 +39,19 @@
           <label class="search"><span aria-hidden="true">&#8981;</span><span class="sr-only">Search rules and rulesets</span><input id="search" type="search" placeholder="Search by name, ID, description, or JSON..." autocomplete="off"></label>
           <div class="view-switch" role="group" aria-label="Browse by"><button id="rules-view" type="button" aria-pressed="true">Rules <span id="rule-count">0</span></button><button id="rulesets-view" type="button" aria-pressed="false">Rulesets <span id="ruleset-count">0</span></button></div>
         </div>
+        <section class="catalog-builder" aria-labelledby="catalog-builder-title">
+          <div><h3 id="catalog-builder-title">Build a Fab Inspector catalog</h3><p>Select whole rulesets in the Rulesets view. Filters do not change your selection.</p></div>
+          <div class="catalog-controls">
+            <label>Ruleset URLs <select id="url-mode" disabled><option value="head">Branch head (main)</option><option value="commit">Current commit SHA</option></select></label>
+            <label>Catalog name <input id="catalog-name" type="text" value="Fab Inspector Rules Catalog"></label>
+            <button id="download-catalog" class="primary-button" type="button" disabled>Download catalog JSON</button>
+            <button id="clear-selection" class="text-button" type="button" disabled>Clear selection</button>
+          </div>
+          <p id="selection-summary" role="status">0 rulesets selected</p>
+          <p id="url-reference"></p>
+          <p id="url-status" role="status"></p>
+          <div id="url-fallback" hidden><label for="failed-url">Clipboard unavailable. Select and copy this URL:</label><input id="failed-url" type="url" readonly></div>
+        </section>
         <div class="library-layout">
           <aside aria-label="Filter collection">
             <div class="filter-heading"><h3>Filters</h3><button id="reset" class="text-button" type="button">Reset</button></div>

@@ -50,6 +50,15 @@ h2 { font-size: 26px; letter-spacing: -.9px; margin: 8px 0 0; font-weight: 750; 
 .view-switch button { background: transparent; border: 0; border-radius: 5px; padding: 8px 16px; font-size: 12px; }
 .view-switch button[aria-pressed="true"] { background: white; box-shadow: 0 1px 4px #3524311a; color: var(--accent); font-weight: 700; }
 .view-switch span { display: inline-block; margin-left: 8px; background: var(--soft); border-radius: 4px; padding: 2px 6px; font-size: 10px; }
+.catalog-builder { margin-top: 20px; padding: 20px; border: 1px solid var(--border); border-radius: 10px; background: white; }
+.catalog-builder h3 { margin: 0; font-size: 15px; }
+.catalog-builder p { font-size: 12px; color: var(--muted); line-height: 1.6; overflow-wrap: anywhere; }
+.catalog-controls { display: flex; flex-wrap: wrap; align-items: end; gap: 16px; }
+.catalog-controls label, #url-fallback label { display: grid; gap: 6px; font-size: 12px; }
+.catalog-controls input, .catalog-controls select, #failed-url { max-width: 100%; min-width: 0; padding: 9px; border: 1px solid var(--border); border-radius: 6px; background: white; color: var(--ink); }
+#failed-url { width: 100%; margin-top: 6px; }
+.ruleset-selection { display: flex; gap: 6px; align-items: center; font-size: 11px; cursor: pointer; }
+.ruleset-selection input { accent-color: var(--accent); }
 .library-layout { display: grid; grid-template-columns: 215px minmax(0, 1fr); gap: 32px; margin-top: 24px; }
 aside { padding-right: 24px; border-right: 1px solid var(--border); }
 .filter-heading { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; }
@@ -78,7 +87,7 @@ aside > select { width: 100%; padding: 10px 24px 10px 10px; margin-bottom: 24px;
 .rule-id { font: 9px/1.6 monospace; color: var(--muted); margin: 0; overflow-wrap: anywhere; }
 .card-description { font-size: 12px; line-height: 1.8; color: var(--muted); margin: 15px 0; overflow-wrap: anywhere; }
 .card-source { font-size: 10px; color: var(--muted); padding-top: 8px; margin-top: auto; overflow-wrap: anywhere; }
-.card-actions { display: flex; align-items: center; justify-content: space-between; margin-top: 6px; padding: 14px 0; border-top: 1px solid var(--border); }
+.card-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; margin-top: 6px; padding: 14px 0; border-top: 1px solid var(--border); }
 .card-actions .text-button { font-size: 11px; }
 .download-button { background: var(--soft); color: var(--accent); border: 1px solid #f2d5e2; border-radius: 5px; padding: 6px 10px; font-size: 10px; font-weight: 600; }
 .download-button:hover { background: #fbdce9; }

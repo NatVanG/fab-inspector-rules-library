@@ -1,6 +1,7 @@
 import { readdir, readFile, mkdir, writeFile, copyFile, cp, rm } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { execFileSync } from "node:child_process";
 
 export async function collectRulesets(directory, prefix = "") {
   const entries = await readdir(directory, { withFileTypes: true });
@@ -34,13 +35,21 @@ export async function collectRulesets(directory, prefix = "") {
   return rulesets;
 }
 
-export async function build(root) {
+export async function build(root, {
+  repository = process.env.GITHUB_REPOSITORY || "NatVanG/fab-inspector-rules-library",
+  headRef = "main",
+  commitSha = process.env.GITHUB_SHA || execFileSync("git", ["rev-parse", "HEAD"], { cwd: root, encoding: "utf8" }).trim(),
+} = {}) {
+  if (!/^[a-zA-Z0-9_.-]+\/[a-zA-Z0-9_.-]+$/.test(repository)
+      || !headRef || !/^[a-f0-9]{40}$/i.test(commitSha)) {
+    throw new Error("Invalid repository, head reference, or commit SHA for ruleset URLs");
+  }
   const source = path.join(root, "rulesets");
   const rulesets = await collectRulesets(source);
   const output = path.join(root, "dist");
   await rm(output, { recursive: true, force: true });
   await mkdir(output, { recursive: true });
-  for (const file of ["index.html", "styles.css", "app.js"]) {
+  for (const file of ["index.html", "styles.css", "app.js", "catalog.js"]) {
     await copyFile(path.join(root, "web", file), path.join(output, file));
   }
   await cp(path.join(root, "web", "assets"), path.join(output, "assets"), { recursive: true });
@@ -49,7 +58,8 @@ export async function build(root) {
     await mkdir(path.dirname(target), { recursive: true });
     await copyFile(path.join(source, ruleset.path), target);
   }
-  await writeFile(path.join(output, "catalog.json"), `${JSON.stringify({ rulesets }, null, 2)}\n`);
+  const catalog = { source: { repository, headRef, commitSha }, rulesets };
+  await writeFile(path.join(output, "catalog.json"), `${JSON.stringify(catalog, null, 2)}\n`);
   return rulesets;
 }
 
