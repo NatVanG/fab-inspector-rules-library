@@ -1,0 +1,51 @@
+{
+  "name": "Sample: Lakehouse shortcuts",
+  "description": "Two approaches to checking that Lakehouse shortcuts target OneLake. These examples inspect definitions without calling the Fabric API.",
+  "rules": [
+    {
+      "id": "CHECK_LAKEHOUSE_SHORTCUT_TARGETTYPE",
+      "name": "Lakehouse shortcuts target OneLake",
+      "description": "Checks each shortcut in shortcuts.metadata.json for a OneLake target.",
+      "itemType": "Lakehouse",
+      "part": "shortcuts.metadata.json",
+      "test": [
+        {
+          "all": [
+            { "var": "" },
+            {
+              "==": [
+                { "var": "target.type" },
+                "OneLake"
+              ]
+            }
+          ]
+        },
+        true
+      ]
+    },
+    {
+      "id": "CHECK_LAKEHOUSE_SHORTCUT_TARGETTYPE2",
+      "name": "Merged Lakehouse shortcuts target OneLake",
+      "description": "Merges shortcut metadata parts before checking that every target type is OneLake.",
+      "itemType": "Lakehouse",
+      "test": [
+        {
+          "all": [
+            {
+              "merge": [
+                { "part": "shortcuts.metadata.json" }
+              ]
+            },
+            {
+              "==": [
+                { "var": "target.type" },
+                "OneLake"
+              ]
+            }
+          ]
+        },
+        true
+      ]
+    }
+  ]
+}

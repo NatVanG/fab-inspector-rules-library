@@ -1,0 +1,53 @@
+{
+  "name": "Sample: Copy job configuration",
+  "description": "Examples of checking Batch mode in copy job definitions, including a disabled alternative for testing the status filter.",
+  "rules": [
+    {
+      "id": "CHECK_COPYJOB_JOBMODE",
+      "name": "Copy jobs use Batch mode",
+      "description": "Checks the jobMode property in each copyjob-content.json definition.",
+      "itemType": "CopyJob",
+      "part": "copyjob-content.json",
+      "test": [
+        { "var": "properties.jobMode" },
+        "Batch"
+      ]
+    },
+    {
+      "id": "CHECK_COPYJOB_JOBMODE2",
+      "name": "First copy job definition uses Batch mode",
+      "description": "Queries the first copy job definition and compares its job mode with Batch.",
+      "itemType": "CopyJob",
+      "test": [
+        {
+          "query": [
+            { "part": "copyjob-content.json" },
+            { "var": "0.properties.jobMode" }
+          ]
+        },
+        "Batch"
+      ]
+    },
+    {
+      "id": "CHECK_COPYJOB_JOBMODE3",
+      "name": "All copy job definitions use Batch mode",
+      "description": "A disabled alternative from the upstream examples. Enable it only after reviewing the check for your definitions.",
+      "itemType": "CopyJob",
+      "disabled": true,
+      "test": [
+        {
+          "all": [
+            {
+              "query": [
+                { "part": "copyjob-content.json" },
+                { "path": "$.*.properties.jobMode" }
+              ]
+            },
+            "Batch"
+          ]
+        },
+        true
+      ]
+    }
+  ]
+}
