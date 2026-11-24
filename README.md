@@ -86,3 +86,13 @@ All application and download paths are relative, supporting both project Pages
 URLs and custom domains. The build copies only the web client, generated catalog
 and ruleset JSON into `dist/`. No server, API key or runtime GitHub API calls are
 needed. Fonts and styling have no third-party runtime dependencies.
+
+## Branding
+
+The client reuses the [Fab Inspector logo](https://github.com/NatVanG/fab-inspector/blob/main/docs/Images/FabInsp_500x500.png)
+and its pink accent, paired with dark plum text and soft pink surfaces. The
+unmodified [official Microsoft Fabric icon](https://learn.microsoft.com/en-us/fabric/fundamentals/icons)
+illustrates Fab Inspector applying JSON rules to Fabric items and settings; it
+does not imply Microsoft affiliation or that this library executes inspections.
+Both logos are served locally from `web/assets/`, alongside their source and
+license notices in `NOTICE.txt`, and copied into the Pages build.
