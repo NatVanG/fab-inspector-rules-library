@@ -1,0 +1,64 @@
+{
+  "name": "Sample: Report usability",
+  "description": "Example report checks for page count and visible page height. Review the sample limits before using these checks in your own estate.",
+  "rules": [
+    {
+      "id": "REDUCE_PAGES",
+      "name": "Reports contain no more than 10 pages",
+      "description": "Counts report pages and fails when the total exceeds the sample limit of 10.",
+      "itemType": "Report",
+      "disabled": false,
+      "test": [
+        {
+          "<=": [
+            {
+              "count": [
+                { "part": "Pages" }
+              ]
+            },
+            10
+          ]
+        },
+        {},
+        true
+      ]
+    },
+    {
+      "id": "ENSURE_PAGES_DO_NOT_SCROLL_VERTICALLY",
+      "name": "Visible report pages fit within 720 pixels",
+      "description": "Returns the names of visible pages taller than 720 pixels. Hidden pages are excluded.",
+      "itemType": "Report",
+      "disabled": false,
+      "test": [
+        {
+          "map": [
+            {
+              "filter": [
+                { "part": "Pages" },
+                {
+                  "and": [
+                    {
+                      ">": [
+                        { "var": "height" },
+                        720
+                      ]
+                    },
+                    {
+                      "!=": [
+                        { "var": "visibility" },
+                        "HiddenInViewMode"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            { "var": "displayName" }
+          ]
+        },
+        {},
+        []
+      ]
+    }
+  ]
+}
