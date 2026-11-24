@@ -12,6 +12,8 @@ JSON previews
 include a copy action. Individual rules download as valid `{"rules": [...]}`
 rulesets; whole-ruleset downloads preserve the original file, including metadata.
 Filters affect browsing only, never the contents of a whole-ruleset download.
+The Rulesets view is selected by default. Both view buttons show the number of
+matches for the current search and filters.
 In the **Rulesets** view, **Copy URL** copies a raw GitHub URL for the whole
 ruleset. Choose **Branch head (main)** for a URL that follows future commits,
 or **Current commit SHA** for a URL pinned to the commit used to build the site.
@@ -26,10 +28,17 @@ It references complete source files, including disabled rules, using the chosen
 URL mode. Commit-pinned links require those files to exist in the published
 commit; uncommitted local edits are not available through GitHub URLs.
 
+In the **Rules** view, select **Include in ruleset** on one or more rules,
+optionally edit the ruleset name, and use **Download ruleset JSON** to combine
+them into a `{"name": "...", "rules": [...]}` file.
+Rules retain all their original properties, including disabled status. Rule
+selections are independent of catalog selections and survive searches, filters
+and view changes; **Clear selection** clears the current builder's selections.
+
 The client displays rules; it does not execute them or connect to Fabric.
 
-For embedding, add `?embed=true` to the page URL to hide the navigation header
-and introductory section. The library and footer remain available. Without
+For embedding, add `?embed=true` to the page URL to hide the navigation header,
+introductory section, and library headings. The library and footer remain available. Without
 `embed=true`, the full page is shown.
 
 Use the **Dark mode** button in the header to switch themes, or add

@@ -46,12 +46,13 @@
         </figure>
       </section>
       <section class="library" aria-labelledby="library-title">
-        <div class="library-heading"><div><div class="eyebrow">EXPLORE THE COLLECTION</div><h2 id="library-title">The rule library</h2></div><p id="catalog-summary" aria-live="polite">Loading the collection...</p></div>
+        <div class="library-heading"><div><div class="eyebrow">EXPLORE THE COLLECTION</div><h2 id="library-title">The rule library</h2></div></div>
         <div class="toolbar">
           <label class="search"><span aria-hidden="true">&#8981;</span><span class="sr-only">Search rules and rulesets</span><input id="search" type="search" placeholder="Search by name, ID, description, or JSON..." autocomplete="off"></label>
-          <div class="view-switch" role="group" aria-label="Browse by"><button id="rules-view" type="button" aria-pressed="true">Rules <span id="rule-count">0</span></button><button id="rulesets-view" type="button" aria-pressed="false">Rulesets <span id="ruleset-count">0</span></button></div>
+          <div class="view-switch" role="group" aria-label="Browse by"><button id="rulesets-view" type="button" aria-pressed="true">Rulesets <span id="ruleset-count">0</span></button><button id="rules-view" type="button" aria-pressed="false">Rules <span id="rule-count">0</span></button></div>
+          <p id="catalog-summary" aria-live="polite">Loading the collection...</p>
         </div>
-        <section class="catalog-builder" aria-labelledby="catalog-builder-title">
+        <section id="catalog-builder" class="catalog-builder" aria-labelledby="catalog-builder-title">
           <div><h3 id="catalog-builder-title">Build a Fab Inspector catalog</h3><p>Select whole rulesets in the Rulesets view. Filters do not change your selection.</p></div>
           <div class="catalog-controls">
             <label>Ruleset URLs <select id="url-mode" disabled><option value="head">Branch head (main)</option><option value="commit">Current commit SHA</option></select></label>
@@ -63,6 +64,15 @@
           <p id="url-reference"></p>
           <p id="url-status" role="status"></p>
           <div id="url-fallback" hidden><label for="failed-url">Clipboard unavailable. Select and copy this URL:</label><input id="failed-url" type="url" readonly></div>
+        </section>
+        <section id="ruleset-builder" class="catalog-builder" aria-labelledby="ruleset-builder-title" hidden>
+          <div><h3 id="ruleset-builder-title">Build a Fabric Inspector ruleset</h3><p>Select one or more rules. Filters do not change your selection.</p></div>
+          <div class="catalog-controls">
+            <label>Ruleset name <input id="ruleset-name" type="text" value="Fab Inspector Ruleset"></label>
+            <button id="download-ruleset" class="primary-button" type="button" disabled>Download ruleset JSON</button>
+            <button id="clear-rules" class="text-button" type="button" disabled>Clear selection</button>
+          </div>
+          <p id="rule-selection-summary" role="status">0 rules selected</p>
         </section>
         <div class="library-layout">
           <aside aria-label="Filter collection">

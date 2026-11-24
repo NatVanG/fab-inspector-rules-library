@@ -5,7 +5,7 @@ import os from "node:os";
 import path from "node:path";
 import { runInNewContext } from "node:vm";
 import { build, collectRulesets } from "../scripts/build.mjs";
-import { createCatalog, rulesetURL } from "../web/catalog.js";
+import { createCatalog, createRuleset, ruleKey, rulesetURL } from "../web/catalog.js";
 
 const sourceMetadata = {
   repository: "NatVanG/fab-inspector-rules-library",
@@ -165,8 +165,22 @@ test("catalog exports only selected complete rulesets in Fab Inspector's format"
       { name: "Third", type: "url", path: `https://raw.githubusercontent.com/${sourceMetadata.repository}/${sourceMetadata.commitSha}/rulesets/nested/three.json` },
     ],
   });
+
   assert.equal(createCatalog(sets, selected, sourceMetadata, "head", " ").name, "Fab Inspector Rules Catalog");
   assert.deepEqual(createCatalog(sets, new Set(), sourceMetadata, "head", "").ruleSets, []);
+});
+
+test("ruleset exports selected rules from multiple files without losing properties", () => {
+  const sets = [
+    { path: "one.json", rules: [{ id: "SAME", custom: { value: 1 } }, { id: "OTHER" }] },
+    { path: "two.json", rules: [{ id: "SAME", disabled: true }, { name: "Unnamed" }] },
+  ];
+  const selected = new Set([ruleKey("one.json", 0), ruleKey("two.json", 0), ruleKey("two.json", 1)]);
+  assert.deepEqual(createRuleset(sets, selected, " My rules "), {
+    name: "My rules",
+    rules: [sets[0].rules[0], sets[1].rules[0], sets[1].rules[1]],
+  });
+  assert.deepEqual(createRuleset(sets, new Set(), " "), { name: "Fab Inspector Ruleset", rules: [] });
 });
 
 test("empty collection builds without sample data", async t => {
