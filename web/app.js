@@ -1,7 +1,7 @@
-import { rulesetURL, createCatalog } from "./catalog.js";
+import { rulesetURL, createCatalog, createRuleset, ruleKey } from "./catalog.js";
 
 const $ = selector => document.querySelector(selector);
-const state = { rulesets: [], selected: new Set(), source: null, view: "rules", ready: false };
+const state = { rulesets: [], selected: new Set(), selectedRules: new Set(), source: null, view: "rulesets", ready: false };
 const controls = ["#search", "#item-type", "#ruleset", "#tags", "#sort"];
 let activePreview;
 let returnFocus;
@@ -66,6 +66,10 @@ function updateSelection() {
   $("#selection-summary").textContent = `${count} ruleset${count === 1 ? "" : "s"} selected`;
   $("#download-catalog").disabled = count === 0;
   $("#clear-selection").disabled = count === 0;
+  const ruleCount = state.selectedRules.size;
+  $("#rule-selection-summary").textContent = `${ruleCount} rule${ruleCount === 1 ? "" : "s"} selected`;
+  $("#download-ruleset").disabled = ruleCount === 0;
+  $("#clear-rules").disabled = ruleCount === 0;
 }
 
 async function copyURL(set) {
@@ -174,7 +178,23 @@ function card(entry) {
     copy.addEventListener("click", () => copyURL(entry.set));
     actions.insertBefore(copy, download);
   }
-  article.append(top, title, id, element("p", "card-description", typeof description === "string" && description ? description : "Inspect the JSON to explore this check and its configuration."), source, actions);
+  article.append(top);
+  if (entry.rule) {
+    const selection = element("label", "ruleset-selection rule-selection");
+    const checkbox = element("input");
+    const key = ruleKey(entry.set.path, entry.index);
+    checkbox.type = "checkbox";
+    checkbox.setAttribute("aria-label", `Include ${entry.name} (${entry.set.path}, rule ${entry.index + 1}) in ruleset`);
+    checkbox.checked = state.selectedRules.has(key);
+    checkbox.addEventListener("change", () => {
+      if (checkbox.checked) state.selectedRules.add(key);
+      else state.selectedRules.delete(key);
+      updateSelection();
+    });
+    selection.append(checkbox, document.createTextNode("Include in ruleset"));
+    article.append(selection);
+  }
+  article.append(title, id, element("p", "card-description", typeof description === "string" && description ? description : "Inspect the JSON to explore this check and its configuration."), source, actions);
   return article;
 }
 
@@ -188,24 +208,27 @@ function render() {
     && (!tagQuery || Array.isArray(rule.tags)
       && rule.tags.some(tag => typeof tag === "string" && tag.toLocaleLowerCase().includes(tagQuery)));
   const matchesSearch = value => JSON.stringify(value).toLocaleLowerCase().includes(query);
-  let entries = [];
+  const rules = [];
+  const rulesets = [];
   for (const set of state.rulesets) {
     if (selectedSet && set.path !== selectedSet) continue;
-    if (state.view === "rulesets") {
-      if ((!type && !tagQuery || set.rules.some(matchesRule)) && matchesSearch(set)) {
-        entries.push({ set, name: set.name });
-      }
-    } else {
-      set.rules.forEach((rule, index) => {
-        if (matchesRule(rule) && matchesSearch([rule, set.name, set.description, set.path])) {
-          entries.push({ set, rule, name: ruleName(rule, index) });
-        }
-      });
+    if ((!type && !tagQuery || set.rules.some(matchesRule)) && matchesSearch(set)) {
+      rulesets.push({ set, name: set.name });
     }
+    set.rules.forEach((rule, index) => {
+      if (matchesRule(rule) && matchesSearch([rule, set.name, set.description, set.path])) {
+        rules.push({ set, rule, index, name: ruleName(rule, index) });
+      }
+    });
   }
+  $("#rule-count").textContent = rules.length;
+  $("#ruleset-count").textContent = rulesets.length;
+  const entries = state.view === "rules" ? rules : rulesets;
   if ($("#sort").value === "name") entries.sort((a, b) => a.name.localeCompare(b.name));
   $("#rules-view").setAttribute("aria-pressed", String(state.view === "rules"));
   $("#rulesets-view").setAttribute("aria-pressed", String(state.view === "rulesets"));
+  $("#catalog-builder").hidden = state.view !== "rulesets";
+  $("#ruleset-builder").hidden = state.view !== "rules";
   const unit = state.view === "rules" ? "rule" : "ruleset";
   $("#results-summary").textContent = `${entries.length} ${unit}${entries.length === 1 ? "" : "s"} found`;
   const results = $("#results");
@@ -247,6 +270,15 @@ $("#download-catalog").addEventListener("click", () => {
   downloadJSON(createCatalog(state.rulesets, state.selected, state.source,
     $("#url-mode").value, $("#catalog-name").value), "fab-inspector-catalog.json");
 });
+$("#clear-rules").addEventListener("click", () => {
+  state.selectedRules.clear();
+  updateSelection();
+  render();
+});
+$("#download-ruleset").addEventListener("click", () => {
+  if (!state.ready || !state.selectedRules.size) return;
+  downloadJSON(createRuleset(state.rulesets, state.selectedRules, $("#ruleset-name").value), "fab-inspector-ruleset.json");
+});
 $("#close-detail").addEventListener("click", () => $("#detail").close());
 $("#detail").addEventListener("close", () => {
   if ($("#detail").open) return;
@@ -285,9 +317,7 @@ async function load() {
     $("#url-mode").disabled = false;
     $("#url-reference").textContent = `Tracks the latest committed rulesets on ${state.source.headRef}.`;
     const ruleCount = state.rulesets.reduce((sum, set) => sum + set.rules.length, 0);
-    $("#rule-count").textContent = ruleCount;
-    $("#ruleset-count").textContent = state.rulesets.length;
-    $("#catalog-summary").textContent = `${ruleCount} rules / ${state.rulesets.length} rulesets`;
+    $("#catalog-summary").textContent = `out of ${state.rulesets.length} rulesets / ${ruleCount} rules`;
     const types = [...new Set(state.rulesets.flatMap(set => set.rules.flatMap(itemTypes)))].sort();
     for (const type of types) $("#item-type").add(new Option(type, type));
     for (const set of state.rulesets) $("#ruleset").add(new Option(set.name, set.path));

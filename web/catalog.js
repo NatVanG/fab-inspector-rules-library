@@ -14,3 +14,14 @@ export function createCatalog(rulesets, selected, source, mode, name) {
     })),
   };
 }
+
+export function ruleKey(path, index) {
+  return JSON.stringify([path, index]);
+}
+
+export function createRuleset(rulesets, selected, name) {
+  return {
+    name: name.trim() || "Fab Inspector Ruleset",
+    rules: rulesets.flatMap(set => set.rules.filter((rule, index) => selected.has(ruleKey(set.path, index)))),
+  };
+}
