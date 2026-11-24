@@ -4,12 +4,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Discover, inspect, and download reusable Fab Inspector rules for Microsoft Fabric.">
-    <meta name="color-scheme" content="light">
+    <meta name="color-scheme" content="light dark">
     <title>Fab Inspector | Rules Library</title>
     <link rel="icon" type="image/png" href="./assets/fab-inspector.png">
     <script>
-      if (new URLSearchParams(location.search).get("embed") === "true") {
+      const params = new URLSearchParams(location.search);
+      if (params.get("embed") === "true") {
         document.documentElement.classList.add("embed-mode");
+      }
+      if (params.get("theme") === "dark") {
+        document.documentElement.classList.add("dark-mode");
       }
     </script>
     <link rel="stylesheet" href="./styles.css">
@@ -18,7 +22,10 @@
   <body>
     <header class="site-header">
       <a class="brand" href="./"><img class="brand-icon" src="./assets/fab-inspector.png" alt="" width="48" height="48"><span>Fab Inspector <span class="brand-divider">/</span> <strong>Rules Library</strong></span></a>
-      <a class="github-link" href="https://github.com/NatVanG/fab-inspector-rules-library">View on GitHub <span aria-hidden="true">&#8599;</span></a>
+      <div class="header-actions">
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false">Dark mode</button>
+        <a class="github-link" href="https://github.com/NatVanG/fab-inspector-rules-library">View on GitHub <span aria-hidden="true">&#8599;</span></a>
+      </div>
     </header>
     <main>
       <section class="hero" aria-labelledby="page-title">

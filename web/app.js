@@ -7,6 +7,16 @@ let activePreview;
 let returnFocus;
 let previewVersion = 0;
 
+const themeToggle = $("#theme-toggle");
+function updateThemeToggle() {
+  themeToggle.setAttribute("aria-pressed", String(document.documentElement.classList.contains("dark-mode")));
+}
+updateThemeToggle();
+themeToggle.addEventListener("click", () => {
+  document.documentElement.classList.toggle("dark-mode");
+  updateThemeToggle();
+});
+
 function element(tag, className, text) {
   const node = document.createElement(tag);
   if (className) node.className = className;

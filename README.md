@@ -32,6 +32,11 @@ For embedding, add `?embed=true` to the page URL to hide the navigation header
 and introductory section. The library and footer remain available. Without
 `embed=true`, the full page is shown.
 
+Use the **Dark mode** button in the header to switch themes, or add
+`?theme=dark` to start in dark mode. Combine the parameters as
+`?embed=true&theme=dark` for a dark embedded library. Light mode is the default;
+the button changes the current page only and does not change the URL.
+
 ## Adding rulesets
 
 Place valid JSON files in the root `rulesets/` directory. Nested folders and
@@ -115,7 +120,8 @@ do not pair new filter markup with stale cached JavaScript.
 ## Branding
 
 The client reuses the [Fab Inspector logo](https://github.com/NatVanG/fab-inspector/blob/main/docs/Images/FabInsp_500x500.png)
-and its pink accent, paired with dark plum text and soft pink surfaces. The
+and its pink accent in light mode. Dark mode uses the navy, blue and pale text
+palette of the Fab Inspector Avalonia UI. The
 unmodified [official Microsoft Fabric icon](https://learn.microsoft.com/en-us/fabric/fundamentals/icons)
 illustrates Fab Inspector applying JSON rules to Fabric items and settings; it
 does not imply Microsoft affiliation or that this library executes inspections.
