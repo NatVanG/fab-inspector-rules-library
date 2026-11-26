@@ -1,0 +1,6 @@
+{
+  "ruleId": "API_WORKSPACE_DESCRIPTION_REQUIRED",
+  "description": "Pass: workspace has a description. Fail: workspace description is empty.",
+  "pass": [],
+  "fail": ["Sales Analytics [Prod]"]
+}

@@ -1,0 +1,11 @@
+{
+  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}/items": {
+    "value": [
+      { "id": "25000000-0000-4000-8000-000000000002", "displayName": "OPS_LH_Orders", "description": "Operations order lakehouse.", "type": "Lakehouse", "workspaceId": "aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee" }
+    ]
+  },
+  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}/networking/communicationPolicy": {
+    "inbound": { "publicAccessRules": { "defaultAction": "Deny" } },
+    "outbound": { "publicAccessRules": { "defaultAction": "Allow" } }
+  }
+}

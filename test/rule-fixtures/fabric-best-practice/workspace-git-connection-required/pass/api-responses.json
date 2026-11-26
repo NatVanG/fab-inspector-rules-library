@@ -1,0 +1,18 @@
+{
+  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}/git/connection": {
+    "gitProviderDetails": {
+      "organizationName": "Contoso",
+      "projectName": "Fabric",
+      "gitProviderType": "AzureDevOps",
+      "repositoryName": "analytics",
+      "branchName": "main",
+      "directoryName": "/sales"
+    },
+    "gitSyncDetails": {
+      "head": "eaa737b48cda41b37ffefac772ea48f6fed3eac4",
+      "lastSyncTime": "2026-09-09T09:26:43.153Z"
+    },
+    "gitConnectionState": "ConnectedAndInitialized",
+    "gitConnectionType": "Full"
+  }
+}

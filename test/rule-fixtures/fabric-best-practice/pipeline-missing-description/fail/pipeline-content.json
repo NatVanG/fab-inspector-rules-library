@@ -1,0 +1,15 @@
+{
+  "properties": {
+    "description": "",
+    "activities": [
+      {
+        "name": "CopyFactSales",
+        "type": "Copy",
+        "typeProperties": {},
+        "policy": {
+          "retry": 2
+        }
+      }
+    ]
+  }
+}

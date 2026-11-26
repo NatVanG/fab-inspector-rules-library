@@ -1,0 +1,20 @@
+{
+  "properties": {
+    "description": "Iterates over tables with an unconstrained parallel batch count.",
+    "activities": [
+      {
+        "name": "ForEachTable",
+        "type": "ForEach",
+        "typeProperties": {
+          "isSequential": false,
+          "batchCount": 100,
+          "items": {
+            "value": "@pipeline().parameters.tableList",
+            "type": "Expression"
+          },
+          "activities": []
+        }
+      }
+    ]
+  }
+}

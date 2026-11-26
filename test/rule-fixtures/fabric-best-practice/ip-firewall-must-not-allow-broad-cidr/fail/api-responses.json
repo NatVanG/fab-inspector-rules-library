@@ -1,0 +1,7 @@
+{
+  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}/networking/communicationpolicy/inbound/firewall": {
+    "rules": [
+      { "displayName": "Internet", "value": "0.0.0.0/0" }
+    ]
+  }
+}

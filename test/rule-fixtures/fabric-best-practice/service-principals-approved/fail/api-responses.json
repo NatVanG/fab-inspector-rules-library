@@ -1,0 +1,16 @@
+{
+  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}/roleAssignments": {
+    "value": [
+      {
+        "id": "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb",
+        "principal": {
+          "displayName": "Unknown Automation Identity",
+          "id": "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb",
+          "type": "ServicePrincipal",
+          "servicePrincipalDetails": { "aadAppId": "99999999-9999-9999-9999-999999999999" }
+        },
+        "role": "Contributor"
+      }
+    ]
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "ruleId": "REPORT_DEFAULT_PAGE_NAMES_DETECTED",
+  "description": "Pass: page has a descriptive display name. Fail: page retains a generated 'Page N' display name.",
+  "pass": [],
+  "fail": ["Page 1"]
+}

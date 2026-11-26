@@ -1,0 +1,6 @@
+{
+  "ruleId": "API_WORKSPACE_ADMIN_REQUIRED",
+  "description": "Pass: complete role collection contains an Admin. Fail: no Admin assignment exists.",
+  "pass": [],
+  "fail": ["NO_WORKSPACE_ADMIN"]
+}

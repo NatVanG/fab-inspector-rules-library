@@ -1,0 +1,11 @@
+{
+  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}/networking/communicationPolicy": {
+    "inbound": { "publicAccessRules": { "defaultAction": "Deny" } },
+    "outbound": { "publicAccessRules": { "defaultAction": "Deny" } }
+  },
+  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}/networking/communicationpolicy/inbound/firewall": {
+    "rules": [
+      { "displayName": "CorpNet", "value": "10.20.0.1-10.20.0.254" }
+    ]
+  }
+}

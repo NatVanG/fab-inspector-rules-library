@@ -1,0 +1,6 @@
+{
+  "ruleId": "API_WORKSPACE_CAPACITY_ASSIGNMENT_HEALTHY",
+  "description": "Pass: capacity assignment is complete. Fail: the latest assignment failed.",
+  "pass": [],
+  "fail": ["Sales Analytics [Prod]"]
+}

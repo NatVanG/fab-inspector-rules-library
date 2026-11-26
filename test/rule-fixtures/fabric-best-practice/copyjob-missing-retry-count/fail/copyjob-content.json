@@ -1,0 +1,34 @@
+{
+  "properties": {
+    "jobMode": "Batch",
+    "source": {
+      "type": "AzureSqlTable",
+      "connectionSettings": {
+        "type": "AzureSqlDatabase",
+        "typeProperties": { "database": "sampleSqlDb" },
+        "externalReferences": { "connection": "00000000-0000-0000-0000-000000000001" }
+      }
+    },
+    "destination": {
+      "type": "LakehouseTable",
+      "connectionSettings": {
+        "type": "Lakehouse",
+        "typeProperties": { "workspaceId": "00000000-0000-0000-0000-0000000000aa" }
+      }
+    },
+    "policy": {
+      "timeout": "0.12:00:00",
+      "retry": 0
+    }
+  },
+  "activities": [
+    {
+      "id": "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb",
+      "properties": {
+        "source": { "datasetSettings": { "schema": "dbo", "table": "orders" } },
+        "destination": { "datasetSettings": { "schema": "dbo", "table": "orders_dest" } },
+        "enableStaging": false
+      }
+    }
+  ]
+}

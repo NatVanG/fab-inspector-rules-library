@@ -4,7 +4,7 @@
   "rules": [
     {
       "id": "CHECK_LAKEHOUSE_SHORTCUT_TARGETTYPE",
-      "tags": ["shortcuts", "onelake"],
+      "tags": ["lakehouse", "shortcuts", "onelake"],
       "name": "Lakehouse shortcuts target OneLake",
       "description": "Checks each shortcut in shortcuts.metadata.json for a OneLake target.",
       "itemType": "Lakehouse",
@@ -26,6 +26,7 @@
     },
     {
       "id": "CHECK_LAKEHOUSE_SHORTCUT_TARGETTYPE2",
+      "tags": ["lakehouse", "shortcuts", "onelake"],
       "name": "Merged Lakehouse shortcuts target OneLake",
       "description": "Merges shortcut metadata parts before checking that every target type is OneLake.",
       "itemType": "Lakehouse",

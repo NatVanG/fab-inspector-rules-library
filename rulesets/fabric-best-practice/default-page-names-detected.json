@@ -1,0 +1,46 @@
+{
+  "$schema": "https://raw.githubusercontent.com/NatVanG/fab-inspector-test-harness/f651610a319d09d8710ef0549ab52bb1b32a7dc8/.ai-assets/RuleSchemas/fab-inspector-rules.schema.json",
+  "rules": [
+    {
+      "id": "REPORT_DEFAULT_PAGE_NAMES_DETECTED",
+      "tags": ["reporting", "naming", "usability"],
+      "name": "Default Page Names Detected",
+      "description": "Returns report page display names that still match default naming like 'Page 1'. WARNING: This rule was AI-generated and tested only against sample fixtures. Review before production use.",
+      "itemType": "Report",
+      "test": [
+        {
+          "map": [
+            {
+              "filter": [
+                {
+                  "part": "Pages"
+                },
+                {
+                  ">": [
+                    {
+                      "count": [
+                        {
+                          "regexextract": [
+                            {
+                              "var": "displayName"
+                            },
+                            "(?i)^Page\\s+\\d+$"
+                          ]
+                        }
+                      ]
+                    },
+                    0
+                  ]
+                }
+              ]
+            },
+            {
+              "var": "displayName"
+            }
+          ]
+        },
+        []
+      ]
+    }
+  ]
+}

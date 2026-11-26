@@ -1,0 +1,6 @@
+{
+  "ruleId": "NOTEBOOK_MISSING_DEFAULT_LAKEHOUSE_DEPENDENCY",
+  "description": "Pass: notebook META block declares a default lakehouse dependency. Fail: no lakehouse dependency in metadata.",
+  "pass": [],
+  "fail": ["notebook-content.py"]
+}

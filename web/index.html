@@ -82,7 +82,21 @@
             <label for="tags">TAGS</label><input id="tags" type="search" placeholder="Search tags..." autocomplete="off">
             <div class="help-card"><span aria-hidden="true">{ }</span><h3>Small rules. Big impact.</h3><p>Download a single rule as a ready-to-use ruleset, or grab the whole collection it belongs to.</p><a href="https://github.com/NatVanG/fab-inspector-rules-library#contributing-new-ruleset">Contribute a ruleset <span aria-hidden="true">&#8599;</span></a></div>
           </aside>
-          <div class="results-area"><div class="results-heading"><p id="results-summary" role="status">Loading rules...</p><label for="sort">Sort by <select id="sort"><option value="name">Name A-Z</option><option value="source">Ruleset order</option></select></label></div><div id="results" class="results" aria-busy="true"></div></div>
+          <div class="results-area">
+            <div class="results-heading">
+              <p id="results-summary" role="status">Loading rules...</p>
+              <div class="results-controls">
+                <label for="sort">Sort by <select id="sort"><option value="name">Name A-Z</option><option value="source">Ruleset order</option></select></label>
+                <div class="view-switch" role="group" aria-label="Results layout"><button id="cards-layout" type="button" aria-pressed="true">Cards</button><button id="list-layout" type="button" aria-pressed="false">List</button></div>
+              </div>
+            </div>
+            <div id="results" class="results" aria-busy="true"></div>
+            <nav id="pagination" class="pagination" aria-label="Results pages" hidden>
+              <button id="previous-page" type="button">Previous</button>
+              <span id="page-summary" role="status"></span>
+              <button id="next-page" type="button">Next</button>
+            </nav>
+          </div>
         </div>
       </section>
     </main>

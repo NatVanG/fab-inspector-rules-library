@@ -1,0 +1,8 @@
+{
+  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}/networking/communicationpolicy/inbound/firewall": {
+    "rules": [
+      { "displayName": "CorpNet", "value": "10.20.0.1-10.20.0.254" },
+      { "displayName": "Build agent", "value": "203.0.113.42" }
+    ]
+  }
+}

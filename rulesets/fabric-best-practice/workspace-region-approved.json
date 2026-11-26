@@ -1,0 +1,33 @@
+{
+  "$schema": "https://raw.githubusercontent.com/NatVanG/fab-inspector-test-harness/f651610a319d09d8710ef0549ab52bb1b32a7dc8/.ai-assets/RuleSchemas/fab-inspector-rules.schema.json",
+  "rules": [
+    {
+      "id": "API_WORKSPACE_REGION_APPROVED",
+      "tags": ["workspace", "governance", "compliance"],
+      "name": "Workspace Capacity Region Must Be Approved",
+      "description": "Returns the capacity region when it is outside the configured allowlist. Replace the example allowlist with the organization's supported Fabric regions.",
+      "itemType": "none",
+      "test": [
+        {
+          "let": [
+            {
+              "workspace": {
+                "apiget": [
+                  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}"
+                ]
+              }
+            },
+            {
+              "if": [
+                { "in": [ { "var": "workspace.capacityRegion" }, [ "East US", "East US 2", "North Europe", "West Europe" ] ] },
+                [],
+                [ { "var": "workspace.capacityRegion" } ]
+              ]
+            }
+          ]
+        },
+        []
+      ]
+    }
+  ]
+}

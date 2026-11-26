@@ -1,0 +1,29 @@
+table Sales
+
+	measure 'Total Sales' = SUM(Sales[Amount])
+		formatString: $ #,##0.00
+
+	column SalesKey
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: SalesKey
+
+	column Amount
+		dataType: decimal
+		summarizeBy: sum
+		sourceColumn: Amount
+
+	column CustomerCode
+		dataType: string
+		summarizeBy: none
+		sourceColumn: CustomerCode
+
+	partition Sales = m
+		mode: import
+		source =
+				let
+					Source = Sql.Database("server", "db"),
+					Sales = Source{[Schema="dbo", Item="Sales"]}[Data]
+				in
+					Sales

@@ -1,0 +1,6 @@
+{
+  "ruleId": "NOTEBOOK_VORDER_MUST_NOT_BE_DISABLED",
+  "description": "Pass: V-Order left enabled (true). Fail: notebook disables spark.sql.parquet.vorder.default.",
+  "pass": [],
+  "fail": ["nb_write_gold_sales"]
+}

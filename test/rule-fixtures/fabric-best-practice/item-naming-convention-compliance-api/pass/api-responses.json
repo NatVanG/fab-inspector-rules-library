@@ -1,0 +1,8 @@
+{
+  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}/items": {
+    "value": [
+      { "id": "20000000-0000-4000-8000-000000000001", "displayName": "FIN_LH_Sales", "description": "Finance sales lakehouse.", "type": "Lakehouse", "workspaceId": "aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee" },
+      { "id": "20000000-0000-4000-8000-000000000002", "displayName": "HR_PL_People", "description": "HR ingestion pipeline.", "type": "DataPipeline", "workspaceId": "aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee" }
+    ]
+  }
+}

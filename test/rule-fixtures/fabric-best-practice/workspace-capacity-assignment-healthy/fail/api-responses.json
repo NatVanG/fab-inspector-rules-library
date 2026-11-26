@@ -1,0 +1,8 @@
+{
+  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}": {
+    "id": "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb",
+    "displayName": "Sales Analytics [Prod]",
+    "capacityId": "cccccccc-1111-2222-3333-dddddddddddd",
+    "capacityAssignmentProgress": "Failed"
+  }
+}

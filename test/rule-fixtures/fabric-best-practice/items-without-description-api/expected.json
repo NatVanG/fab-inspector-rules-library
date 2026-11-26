@@ -1,0 +1,6 @@
+{
+  "ruleId": "API_ITEMS_WITHOUT_DESCRIPTION",
+  "description": "Pass: documented items have descriptions. Fail: a non-SQL endpoint item has an empty description.",
+  "pass": [],
+  "fail": ["OPS_LH_Orders"]
+}

@@ -1,0 +1,62 @@
+{
+  "$schema": "https://raw.githubusercontent.com/NatVanG/fab-inspector-test-harness/f651610a319d09d8710ef0549ab52bb1b32a7dc8/.ai-assets/RuleSchemas/fab-inspector-rules.schema.json",
+  "rules": [
+    {
+      "id": "API_NETWORKING_POLICY_EXPLICITLY_CONFIGURED",
+      "tags": ["security", "networking", "configuration"],
+      "name": "Workspace Networking Policy Is Explicitly Configured",
+      "description": "Returns markers when inbound or outbound defaultAction is missing. WARNING: This rule was AI-generated and tested only against sample fixtures. Review before production use.",
+      "itemType": "none",
+      "test": [
+        {
+          "let": [
+            {
+              "policy": {
+                "apiget": [
+                  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}/networking/communicationPolicy"
+                ]
+              }
+            },
+            {
+              "merge": [
+                {
+                  "if": [
+                    {
+                      "isnullorempty": [
+                        {
+                          "query": [
+                            { "var": "policy" },
+                            { "var": "inbound.publicAccessRules.defaultAction" }
+                          ]
+                        }
+                      ]
+                    },
+                    ["inbound.publicAccessRules.defaultAction"],
+                    []
+                  ]
+                },
+                {
+                  "if": [
+                    {
+                      "isnullorempty": [
+                        {
+                          "query": [
+                            { "var": "policy" },
+                            { "var": "outbound.publicAccessRules.defaultAction" }
+                          ]
+                        }
+                      ]
+                    },
+                    ["outbound.publicAccessRules.defaultAction"],
+                    []
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        []
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "ruleId": "COPYJOB_MISSING_RETRY_COUNT",
+  "description": "Pass: properties.policy.retry >= 1. Fail: properties.policy.retry = 0.",
+  "pass": true,
+  "fail": false
+}

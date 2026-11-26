@@ -1,0 +1,32 @@
+table Sales
+
+	measure 'Total Sales' = SUM(Sales[Amount])
+		formatString: $ #,##0.00
+
+	measure 'Gross Margin %' = DIVIDE([Total Sales] - SUM(Sales[Cost]), [Total Sales])
+		formatString: 0.00%
+
+	column SalesKey
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: SalesKey
+
+	column Amount
+		dataType: decimal
+		summarizeBy: sum
+		sourceColumn: Amount
+
+	column Cost
+		dataType: decimal
+		summarizeBy: sum
+		sourceColumn: Cost
+
+	partition Sales = m
+		mode: import
+		source =
+				let
+					Source = Sql.Database("server", "db"),
+					Sales = Source{[Schema="dbo", Item="Sales"]}[Data]
+				in
+					Sales

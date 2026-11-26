@@ -1,0 +1,6 @@
+{
+  "ruleId": "SEMANTICMODEL_MEASURE_NAMES_TITLE_CASE",
+  "description": "Pass: measures use title-case names. Fail: measure name is lowercase with underscore (total_sales).",
+  "pass": [],
+  "fail": ["total_sales"]
+}

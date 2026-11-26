@@ -1,0 +1,20 @@
+{
+  "name": "KpiExecutiveMetrics",
+  "compatibilityLevel": 1604,
+  "model": {
+    "tables": [
+      {
+        "name": "Sales",
+        "mode": "directLake",
+        "partitions": [
+          {
+            "name": "SalesByTransaction",
+            "mode": "directLake",
+            "highCardinality": true,
+            "source": { "type": "entity", "entityName": "sales", "column": "TransactionId" }
+          }
+        ]
+      }
+    ]
+  }
+}

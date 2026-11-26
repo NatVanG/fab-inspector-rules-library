@@ -1,0 +1,72 @@
+{
+  "$schema": "https://raw.githubusercontent.com/NatVanG/fab-inspector-test-harness/f651610a319d09d8710ef0549ab52bb1b32a7dc8/.ai-assets/RuleSchemas/fab-inspector-rules.schema.json",
+  "rules": [
+    {
+      "id": "API_IP_FIREWALL_RULES_REQUIRED_WHEN_INBOUND_DENIED",
+      "tags": ["security", "networking", "configuration"],
+      "name": "IP Firewall Rules Configured When Inbound Is Denied",
+      "description": "Returns a marker if inbound default is Deny and firewall rules array is empty. WARNING: This rule was AI-generated and tested only against sample fixtures. Review before production use.",
+      "itemType": "none",
+      "test": [
+        {
+          "let": [
+            {
+              "policy": {
+                "apiget": [
+                  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}/networking/communicationPolicy"
+                ]
+              },
+              "firewall": {
+                "apiget": [
+                  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}/networking/communicationpolicy/inbound/firewall"
+                ]
+              }
+            },
+            {
+              "if": [
+                {
+                  "and": [
+                    {
+                      "==": [
+                        {
+                          "query": [
+                            { "var": "policy" },
+                            { "var": "inbound.publicAccessRules.defaultAction" }
+                          ]
+                        },
+                        "Deny"
+                      ]
+                    },
+                    {
+                      "==": [
+                        {
+                          "count": [
+                            {
+                              "coalesce": [
+                                {
+                                  "query": [
+                                    { "var": "firewall" },
+                                    { "path": "$.rules[*]" }
+                                  ]
+                                },
+                                []
+                              ]
+                            }
+                          ]
+                        },
+                        0
+                      ]
+                    }
+                  ]
+                },
+                ["DENY_WITHOUT_FIREWALL_ALLOWLIST"],
+                []
+              ]
+            }
+          ]
+        },
+        []
+      ]
+    }
+  ]
+}

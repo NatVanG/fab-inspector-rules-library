@@ -1,0 +1,50 @@
+{
+  "$schema": "https://raw.githubusercontent.com/NatVanG/fab-inspector-test-harness/f651610a319d09d8710ef0549ab52bb1b32a7dc8/.ai-assets/RuleSchemas/fab-inspector-rules.schema.json",
+  "rules": [
+    {
+      "id": "API_SERVICE_PRINCIPALS_APPROVED",
+      "tags": ["security", "identity", "access-control"],
+      "name": "Workspace Service Principals Must Be Approved",
+      "description": "Returns service principals whose Microsoft Entra application ID is outside the configured allowlist. Replace the example IDs with approved automation identities or remove the assignment.",
+      "itemType": "none",
+      "logType": "error",
+      "test": [
+        {
+          "let": [
+            {
+              "response": {
+                "apiget": [
+                  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}/roleAssignments"
+                ]
+              },
+              "assignments": {
+                "query": [ { "var": "response" }, { "path": "$.value[*]" } ]
+              }
+            },
+            {
+              "map": [
+                {
+                  "filter": [
+                    { "var": "assignments" },
+                    {
+                      "and": [
+                        { "==": [ { "var": "principal.type" }, "ServicePrincipal" ] },
+                        {
+                          "!": [
+                            { "in": [ { "var": "principal.servicePrincipalDetails.aadAppId" }, [ "11111111-1111-1111-1111-111111111111", "22222222-2222-2222-2222-222222222222" ] ] }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                { "var": "principal.displayName" }
+              ]
+            }
+          ]
+        },
+        []
+      ]
+    }
+  ]
+}

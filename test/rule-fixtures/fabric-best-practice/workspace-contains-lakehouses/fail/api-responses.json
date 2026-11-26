@@ -1,0 +1,5 @@
+{
+  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}/items?type=Lakehouse": {
+    "value": []
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "ruleId": "DP_DEPRECATED_INVOKEPIPELINE_USAGE",
+  "description": "Pass: pipeline uses ExecutePipeline. Fail: pipeline uses deprecated InvokePipeline.",
+  "pass": [],
+  "fail": ["RunChildPipeline"]
+}

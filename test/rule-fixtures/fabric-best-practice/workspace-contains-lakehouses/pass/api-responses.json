@@ -1,0 +1,7 @@
+{
+  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}/items?type=Lakehouse": {
+    "value": [
+      { "id": "22000000-0000-4000-8000-000000000001", "displayName": "OPS_LH_Orders", "description": "Operations order lakehouse.", "type": "Lakehouse", "workspaceId": "aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee" }
+    ]
+  }
+}

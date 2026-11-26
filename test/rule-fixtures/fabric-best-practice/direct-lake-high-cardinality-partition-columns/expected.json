@@ -1,0 +1,6 @@
+{
+  "ruleId": "SEMANTICMODEL_DIRECTLAKE_HIGH_CARDINALITY_PARTITIONS",
+  "description": "Pass: no partition flagged high-cardinality. Fail: partition on a high-cardinality column (TransactionId).",
+  "pass": [],
+  "fail": ["TransactionId"]
+}

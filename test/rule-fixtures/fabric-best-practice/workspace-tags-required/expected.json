@@ -1,0 +1,6 @@
+{
+  "ruleId": "API_WORKSPACE_TAGS_REQUIRED",
+  "description": "Pass: workspace has a governance tag. Fail: tags collection is empty.",
+  "pass": [],
+  "fail": ["Sales Analytics [Prod]"]
+}

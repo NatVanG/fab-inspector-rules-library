@@ -1,0 +1,6 @@
+{
+  "ruleId": "API_RESOURCE_INSTANCE_RULES_APPROVED_SUBSCRIPTIONS",
+  "description": "Pass: trusted Azure resources belong to approved subscriptions. Fail: a resource belongs to an unapproved subscription.",
+  "pass": [],
+  "fail": ["/subscriptions/99999999-9999-4999-8999-999999999999/resourceGroups/rg-external/providers/Microsoft.Storage/storageAccounts/stexternal"]
+}

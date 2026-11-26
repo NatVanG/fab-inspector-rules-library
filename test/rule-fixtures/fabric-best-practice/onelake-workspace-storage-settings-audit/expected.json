@@ -1,0 +1,6 @@
+{
+  "ruleId": "API_ONELAKE_WORKSPACE_STORAGE_SETTINGS_AUDIT",
+  "description": "Pass: OneLake settings include diagnostics and lifecycle sections. Fail: lifecycle is missing.",
+  "pass": [],
+  "fail": ["lifecycle"]
+}

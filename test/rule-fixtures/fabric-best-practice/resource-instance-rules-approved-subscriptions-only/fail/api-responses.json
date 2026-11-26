@@ -1,0 +1,10 @@
+{
+  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}/networking/communicationpolicy/inbound/azureresources": {
+    "rules": [
+      {
+        "displayName": "External storage",
+        "resourceId": "/subscriptions/99999999-9999-4999-8999-999999999999/resourceGroups/rg-external/providers/Microsoft.Storage/storageAccounts/stexternal"
+      }
+    ]
+  }
+}

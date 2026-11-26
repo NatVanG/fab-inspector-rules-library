@@ -1,0 +1,41 @@
+{
+  "$schema": "https://raw.githubusercontent.com/NatVanG/fab-inspector-test-harness/f651610a319d09d8710ef0549ab52bb1b32a7dc8/.ai-assets/RuleSchemas/fab-inspector-rules.schema.json",
+  "rules": [
+    {
+      "id": "SEMANTICMODEL_DIRECTLAKE_DIRECTQUERY_FALLBACK_DISABLED_TMDL",
+      "tags": ["semantic-model", "direct-lake", "performance"],
+      "name": "Direct Lake Semantic Model Must Disable DirectQuery Fallback (TMDL)",
+      "description": "TMDL variant of rule 34. Returns definition/model.tmdl when a Direct Lake model does not set 'directLakeBehavior: directLakeOnly'. Assumes the model is Direct Lake. To fix, add 'directLakeBehavior: directLakeOnly' to the model object in model.tmdl. WARNING: This rule was AI-generated and tested only against sample fixtures. Review before production use.",
+      "itemType": "SemanticModel",
+      "part": "model\\.tmdl$",
+      "test": [
+        {
+          "let": [
+            {
+              "pathInfo": { "partinfo": "" },
+              "matches": {
+                "filetextsearchcount": [
+                  {
+                    "query": [
+                      { "partinfo": "" },
+                      { "var": "filesystempath" }
+                    ]
+                  },
+                  "(?i)directLakeBehavior\\s*:\\s*directLakeOnly"
+                ]
+              }
+            },
+            {
+              "if": [
+                { "==": [ { "var": "matches" }, 0 ] },
+                [ { "var": "pathInfo.filesystemname" } ],
+                []
+              ]
+            }
+          ]
+        },
+        []
+      ]
+    }
+  ]
+}

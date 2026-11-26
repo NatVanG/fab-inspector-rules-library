@@ -1,0 +1,6 @@
+{
+  "ruleId": "REPORT_UNAPPROVED_CUSTOM_VISUALS",
+  "description": "Pass: every custom visual is allowlisted. Fail: report contains an unapproved custom visual.",
+  "pass": [],
+  "fail": ["unapprovedVisual"]
+}

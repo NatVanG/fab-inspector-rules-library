@@ -15,7 +15,10 @@ include a copy action. Individual rules download as valid `{"rules": [...]}`
 rulesets; whole-ruleset downloads preserve the original file, including metadata.
 Filters affect browsing only, never the contents of a whole-ruleset download.
 The Rulesets view is selected by default. Both view buttons show the number of
-matches for the current search and filters.
+matches for the current search and filters. Results are paged in groups of 12;
+use Previous and Next to browse them. Switch between Cards and List layouts
+without changing the current page or selections. Changing a filter or sort order
+returns both views to their first page.
 In the **Rulesets** view, **Copy URL** copies a raw GitHub URL for the whole
 ruleset. Choose **Branch head (main)** for a URL that follows future commits,
 or **Current commit SHA** for a URL pinned to the commit used to build the site.
@@ -98,8 +101,31 @@ and [Report](https://github.com/NatVanG/fab-inspector/blob/main/ExampleRules/37-
 examples, with descriptive display metadata added. They inspect definitions
 without calling external APIs. These are illustrative checks, not a recommended
 production policy; review their expressions, limits and required definition
-parts before executing them with Fab Inspector. Remove or replace the sample
-files when you add your own collection.
+parts before executing them with Fab Inspector. You can remove or replace the
+sample files independently of the best-practice collection.
+
+## Fabric best-practice rules
+
+`rulesets/fabric-best-practice/` contains 57 individually downloadable rules
+from the [Fab Inspector test harness](https://github.com/NatVanG/fab-inspector-test-harness/tree/f651610a319d09d8710ef0549ab52bb1b32a7dc8/fabric-best-practice-rules),
+at revision `f651610a319d09d8710ef0549ab52bb1b32a7dc8`. The corresponding
+fixtures and expected rule IDs are in `test/rule-fixtures/fabric-best-practice/`;
+the upstream MIT license is in `test/UPSTREAM-LICENSE`. Schema links
+point to that revision, and outdated "untested" warnings have been clarified.
+Existing sample rulesets remain separate.
+
+Each imported rule passed its upstream pass and fail fixture with the
+published Fab Inspector container image. For API rules, the tests replace
+`apiget` calls with fixture responses and run a temporary rule as a Notebook;
+they also enable the temporary copy if it is disabled. They do not test live
+Fabric APIs, authentication, permissions, or tenant configuration. The
+fixtures assert pass/fail behavior for the expected rule ID, not every value in
+`expected.json`. These examples do not establish production or compliance
+suitability. Review and adapt each rule's thresholds, naming patterns,
+allowlists, scope, required API permissions, and other assumptions before use.
+
+Upstream rules 37–39, 43–50, and 53–55 are not included because they had no
+complete pass/fail fixture sets at the recorded revision.
 
 ## Local development
 
@@ -116,11 +142,28 @@ after changing rulesets or files under `web/`; the preview serves `dist/`.
 Serve over HTTP rather than opening `index.html` directly so the browser can
 fetch the generated catalog and JSON files.
 
+Rule fixture tests run only through GitHub Actions, using the published
+`ghcr.io/natvang/fab-inspector:latest` Docker image. The workflow invokes
+`scripts/test-rule-fixtures.py`; no PowerShell dependencies are needed.
+Each ruleset matches a fixture folder
+by its relative path and filename without `.json`: for example,
+`rulesets/fabric-best-practice/approved-custom-theme-enforcement.json` uses
+`test/rule-fixtures/fabric-best-practice/approved-custom-theme-enforcement/`.
+Each folder contains `pass/`, `fail/`, and `expected.json`. Missing fixtures
+fail the workflow; illustrative rulesets under `rulesets/samples/` are skipped
+when they have no fixtures.
+
+The workflow invokes the container without networking and mounts the rules,
+fixtures, and temporary output. The mutable `latest` tag follows new Fab
+Inspector releases, so test results can change without repository changes.
+GitHub Actions logs the pulled image digest for traceability.
+
 ## GitHub Pages
 
 In the repository's **Settings > Pages**, set **Source** to **GitHub Actions**.
-The `Deploy rules library to GitHub Pages` workflow validates and builds pull
-requests, and builds and deploys pushes to `main`. It can also be run manually.
+The `Deploy rules library to GitHub Pages` workflow runs Node tests,
+container-backed rule fixture tests, and the build on pull requests, pushes to
+`main`, and manual runs. Deployment follows successful checks on `main` only.
 After deployment the site is available at
 <https://natvang.github.io/fab-inspector-rules-library/>.
 

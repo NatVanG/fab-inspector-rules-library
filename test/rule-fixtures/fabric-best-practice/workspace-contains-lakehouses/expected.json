@@ -1,0 +1,6 @@
+{
+  "ruleId": "API_WORKSPACE_CONTAINS_LAKEHOUSES",
+  "description": "Pass: the filtered List Items response contains a Lakehouse. Fail: the response is empty.",
+  "pass": [],
+  "fail": ["NO_LAKEHOUSE_FOUND"]
+}

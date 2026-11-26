@@ -1,0 +1,60 @@
+{
+  "$schema": "https://raw.githubusercontent.com/NatVanG/fab-inspector-test-harness/f651610a319d09d8710ef0549ab52bb1b32a7dc8/.ai-assets/RuleSchemas/fab-inspector-rules.schema.json",
+  "rules": [
+    {
+      "id": "COPYJOB_CDC_MISSING_UPSERT_KEYS",
+      "tags": ["data-pipeline", "data-quality", "configuration"],
+      "name": "CDC Mode Activities Missing Upsert Keys",
+      "description": "In CDC mode, returns activity names where destination.upsertSettings.keys is missing or empty. WARNING: This rule was AI-generated and tested only against sample fixtures. Review before production use.",
+      "itemType": "CopyJob",
+      "part": "copyjob-content.json",
+      "test": [
+        {
+          "if": [
+            {
+              "==": [
+                {
+                  "var": "properties.jobMode"
+                },
+                "CDC"
+              ]
+            },
+            {
+              "map": [
+                {
+                  "filter": [
+                    {
+                      "var": "activities"
+                    },
+                    {
+                      "==": [
+                        {
+                          "count": [
+                            {
+                              "coalesce": [
+                                {
+                                  "var": "properties.destination.upsertSettings.keys"
+                                },
+                                []
+                              ]
+                            }
+                          ]
+                        },
+                        0
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "var": "id"
+                }
+              ]
+            },
+            []
+          ]
+        },
+        []
+      ]
+    }
+  ]
+}

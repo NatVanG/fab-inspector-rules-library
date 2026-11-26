@@ -1,0 +1,18 @@
+{
+  "properties": {
+    "description": "Loads sales data with descriptively named activities.",
+    "activities": [
+      {
+        "name": "CopyFactSales",
+        "type": "Copy",
+        "typeProperties": {},
+        "policy": { "retry": 2 }
+      },
+      {
+        "name": "TransformSalesNotebook",
+        "type": "TridentNotebook",
+        "typeProperties": {}
+      }
+    ]
+  }
+}

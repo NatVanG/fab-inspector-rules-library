@@ -1,0 +1,6 @@
+{
+  "ruleId": "DP_ACTIVITY_NAMES_MUST_BE_DESCRIPTIVE",
+  "description": "Pass: activities have descriptive names. Fail: activities keep default designer names (Copy data1, Notebook1).",
+  "pass": [],
+  "fail": ["Copy data1", "Notebook1"]
+}

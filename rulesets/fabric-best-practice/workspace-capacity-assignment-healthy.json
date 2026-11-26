@@ -1,0 +1,39 @@
+{
+  "$schema": "https://raw.githubusercontent.com/NatVanG/fab-inspector-test-harness/f651610a319d09d8710ef0549ab52bb1b32a7dc8/.ai-assets/RuleSchemas/fab-inspector-rules.schema.json",
+  "rules": [
+    {
+      "id": "API_WORKSPACE_CAPACITY_ASSIGNMENT_HEALTHY",
+      "tags": ["workspace", "reliability", "capacity"],
+      "name": "Workspace Capacity Assignment Must Be Healthy",
+      "description": "Returns the workspace display name when no capacity is assigned or the latest assignment is not Completed. Assign a Fabric capacity and resolve failed or in-progress assignments.",
+      "itemType": "none",
+      "logType": "error",
+      "test": [
+        {
+          "let": [
+            {
+              "workspace": {
+                "apiget": [
+                  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}"
+                ]
+              }
+            },
+            {
+              "if": [
+                {
+                  "or": [
+                    { "isnullorempty": [ { "var": "workspace.capacityId" } ] },
+                    { "!=": [ { "var": "workspace.capacityAssignmentProgress" }, "Completed" ] }
+                  ]
+                },
+                [ { "var": "workspace.displayName" } ],
+                []
+              ]
+            }
+          ]
+        },
+        []
+      ]
+    }
+  ]
+}

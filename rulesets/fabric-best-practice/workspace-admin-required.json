@@ -1,0 +1,37 @@
+{
+  "$schema": "https://raw.githubusercontent.com/NatVanG/fab-inspector-test-harness/f651610a319d09d8710ef0549ab52bb1b32a7dc8/.ai-assets/RuleSchemas/fab-inspector-rules.schema.json",
+  "rules": [
+    {
+      "id": "API_WORKSPACE_ADMIN_REQUIRED",
+      "tags": ["security", "access-control", "workspace"],
+      "name": "Workspace Must Have an Administrator",
+      "description": "Returns a marker when the complete workspace role-assignment collection has no Admin. Assign at least one accountable administrator.",
+      "itemType": "none",
+      "logType": "error",
+      "test": [
+        {
+          "let": [
+            {
+              "response": {
+                "apiget": [
+                  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}/roleAssignments"
+                ]
+              },
+              "assignments": {
+                "query": [ { "var": "response" }, { "path": "$.value[*]" } ]
+              }
+            },
+            {
+              "if": [
+                { "==": [ { "count": [ { "filter": [ { "var": "assignments" }, { "==": [ { "var": "role" }, "Admin" ] } ] } ] }, 0 ] },
+                [ "NO_WORKSPACE_ADMIN" ],
+                []
+              ]
+            }
+          ]
+        },
+        []
+      ]
+    }
+  ]
+}

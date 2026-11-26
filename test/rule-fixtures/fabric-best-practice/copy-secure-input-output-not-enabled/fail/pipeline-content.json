@@ -1,0 +1,17 @@
+{
+  "properties": {
+    "description": "Copies data without securing sensitive input/output.",
+    "activities": [
+      {
+        "name": "CopyDimCustomer",
+        "type": "Copy",
+        "typeProperties": {},
+        "policy": {
+          "retry": 2,
+          "secureInput": false,
+          "secureOutput": false
+        }
+      }
+    ]
+  }
+}

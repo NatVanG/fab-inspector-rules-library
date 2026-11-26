@@ -1,0 +1,6 @@
+{
+  "ruleId": "DP_WEB_ACTIVITY_CERT_VALIDATION_DISABLED",
+  "description": "Pass: web activities keep certificate validation enabled. Fail: WebActivity sets disableCertValidation=true.",
+  "pass": [],
+  "fail": ["CallExternalApi"]
+}

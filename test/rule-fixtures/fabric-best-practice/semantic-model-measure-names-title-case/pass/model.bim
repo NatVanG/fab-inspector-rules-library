@@ -1,0 +1,15 @@
+{
+  "name": "KpiExecutiveMetrics",
+  "compatibilityLevel": 1604,
+  "model": {
+    "tables": [
+      {
+        "name": "Sales",
+        "measures": [
+          { "name": "Total Sales", "expression": "SUM(Sales[Amount])" },
+          { "name": "Gross Margin %", "expression": "DIVIDE([Total Sales]-[Cost],[Total Sales])" }
+        ]
+      }
+    ]
+  }
+}

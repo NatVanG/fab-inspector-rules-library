@@ -1,0 +1,6 @@
+{
+  "ruleId": "SEMANTICMODEL_DIRECTLAKE_HIGH_CARDINALITY_PARTITIONS_TMDL",
+  "description": "Pass: no column annotated highCardinality. Fail: TransactionId column annotated 'highCardinality = true'.",
+  "pass": [],
+  "fail": ["Sales.tmdl"]
+}

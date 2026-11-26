@@ -1,0 +1,6 @@
+{
+  "ruleId": "API_NETWORKING_POLICY_EXPLICITLY_CONFIGURED",
+  "description": "Pass: inbound and outbound defaults are explicit. Fail: the outbound default is absent.",
+  "pass": [],
+  "fail": ["outbound.publicAccessRules.defaultAction"]
+}

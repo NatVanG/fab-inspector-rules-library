@@ -1,0 +1,33 @@
+{
+  "$schema": "https://raw.githubusercontent.com/NatVanG/fab-inspector-test-harness/f651610a319d09d8710ef0549ab52bb1b32a7dc8/.ai-assets/RuleSchemas/fab-inspector-rules.schema.json",
+  "rules": [
+    {
+      "id": "API_WORKSPACE_DOMAIN_REQUIRED",
+      "tags": ["workspace", "governance", "data-ownership"],
+      "name": "Workspace Must Be Assigned to a Domain",
+      "description": "Returns the workspace display name when domainId is empty. Assign the workspace to the Fabric domain that owns its data products.",
+      "itemType": "none",
+      "test": [
+        {
+          "let": [
+            {
+              "workspace": {
+                "apiget": [
+                  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}"
+                ]
+              }
+            },
+            {
+              "if": [
+                { "isnullorempty": [ { "var": "workspace.domainId" } ] },
+                [ { "var": "workspace.displayName" } ],
+                []
+              ]
+            }
+          ]
+        },
+        []
+      ]
+    }
+  ]
+}

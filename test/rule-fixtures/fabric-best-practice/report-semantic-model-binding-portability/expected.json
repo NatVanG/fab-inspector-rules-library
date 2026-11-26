@@ -1,0 +1,6 @@
+{
+  "ruleId": "REPORT_SEMANTIC_MODEL_BINDING_PORTABILITY",
+  "description": "Pass: report binds to its semantic model by path. Fail: report binds by connection.",
+  "pass": [],
+  "fail": [{ "datasetReferenceMode": "byConnection" }]
+}

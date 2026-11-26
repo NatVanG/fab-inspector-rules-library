@@ -1,0 +1,6 @@
+{
+  "ruleId": "DP_ACTIVITIES_MISSING_RETRY_POLICY",
+  "description": "Pass: targeted activities have a positive retry count. Fail: targeted activities have missing or zero retry counts.",
+  "pass": [],
+  "fail": ["CopyCustomers", "RunNotebook"]
+}
