@@ -1,5 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/NatVanG/fab-inspector-test-harness/f651610a319d09d8710ef0549ab52bb1b32a7dc8/.ai-assets/RuleSchemas/fab-inspector-rules.schema.json",
+  "name": "Activities Missing Retry Policy",
+  "description": "Returns Copy, TridentNotebook, and SparkJobDefinition activities where policy.retry is missing or 0.",
   "rules": [
     {
       "id": "DP_ACTIVITIES_MISSING_RETRY_POLICY",

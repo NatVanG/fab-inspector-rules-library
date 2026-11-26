@@ -1,5 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/NatVanG/fab-inspector-test-harness/f651610a319d09d8710ef0549ab52bb1b32a7dc8/.ai-assets/RuleSchemas/fab-inspector-rules.schema.json",
+  "name": "Semantic Model Measure Names Must Use Title Case Without Underscores (TMDL)",
+  "description": "TMDL variant of rule 52. Returns the table .tmdl file name when it declares a measure whose name begins with a lowercase letter or contains an underscore. Rename measures to Title Case (e.g. 'Total Sales').",
   "rules": [
     {
       "id": "SEMANTICMODEL_MEASURE_NAMES_TITLE_CASE_TMDL",

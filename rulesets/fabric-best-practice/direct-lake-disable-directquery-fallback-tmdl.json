@@ -1,5 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/NatVanG/fab-inspector-test-harness/f651610a319d09d8710ef0549ab52bb1b32a7dc8/.ai-assets/RuleSchemas/fab-inspector-rules.schema.json",
+  "name": "Direct Lake Semantic Model Must Disable DirectQuery Fallback (TMDL)",
+  "description": "TMDL variant of rule 34. Returns definition/model.tmdl when a Direct Lake model does not set 'directLakeBehavior: directLakeOnly'. Assumes the model is Direct Lake. To fix, add 'directLakeBehavior: directLakeOnly' to the model object in model.tmdl.",
   "rules": [
     {
       "id": "SEMANTICMODEL_DIRECTLAKE_DIRECTQUERY_FALLBACK_DISABLED_TMDL",

@@ -1,5 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/NatVanG/fab-inspector-test-harness/f651610a319d09d8710ef0549ab52bb1b32a7dc8/.ai-assets/RuleSchemas/fab-inspector-rules.schema.json",
+  "name": "Workspace Must Have an Administrator",
+  "description": "Returns a marker when the complete workspace role-assignment collection has no Admin. Assign at least one accountable administrator.",
   "rules": [
     {
       "id": "API_WORKSPACE_ADMIN_REQUIRED",

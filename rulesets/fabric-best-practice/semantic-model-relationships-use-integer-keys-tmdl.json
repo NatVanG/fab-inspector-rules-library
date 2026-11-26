@@ -1,5 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/NatVanG/fab-inspector-test-harness/f651610a319d09d8710ef0549ab52bb1b32a7dc8/.ai-assets/RuleSchemas/fab-inspector-rules.schema.json",
+  "name": "Semantic Model Must Use Integer Keys in Relationships (TMDL)",
+  "description": "TMDL variant of rule 36. Returns definition/relationships.tmdl when a relationship is annotated 'keyType = string'. Prefer integer surrogate keys for relationships.",
   "rules": [
     {
       "id": "SEMANTICMODEL_RELATIONSHIPS_USE_INTEGER_KEYS_TMDL",
