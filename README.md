@@ -15,7 +15,10 @@ include a copy action. Individual rules download as valid `{"rules": [...]}`
 rulesets; whole-ruleset downloads preserve the original file, including metadata.
 Filters affect browsing only, never the contents of a whole-ruleset download.
 The Rulesets view is selected by default. Both view buttons show the number of
-matches for the current search and filters.
+matches for the current search and filters. Results are paged in groups of 12;
+use Previous and Next to browse them. Switch between Cards and List layouts
+without changing the current page or selections. Changing a filter or sort order
+returns both views to their first page.
 In the **Rulesets** view, **Copy URL** copies a raw GitHub URL for the whole
 ruleset. Choose **Branch head (main)** for a URL that follows future commits,
 or **Current commit SHA** for a URL pinned to the commit used to build the site.

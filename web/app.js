@@ -1,8 +1,9 @@
 import { rulesetURL, createCatalog, createRuleset, ruleKey } from "./catalog.js";
 
 const $ = selector => document.querySelector(selector);
-const state = { rulesets: [], selected: new Set(), selectedRules: new Set(), source: null, view: "rulesets", ready: false };
+const state = { rulesets: [], selected: new Set(), selectedRules: new Set(), source: null, view: "rulesets", layout: "cards", pages: { rulesets: 1, rules: 1 }, ready: false };
 const controls = ["#search", "#item-type", "#ruleset", "#tags", "#sort"];
+const pageSize = 12;
 let activePreview;
 let returnFocus;
 let previewVersion = 0;
@@ -230,11 +231,24 @@ function render() {
   $("#catalog-builder").hidden = state.view !== "rulesets";
   $("#ruleset-builder").hidden = state.view !== "rules";
   const unit = state.view === "rules" ? "rule" : "ruleset";
-  $("#results-summary").textContent = `${entries.length} ${unit}${entries.length === 1 ? "" : "s"} found`;
+  const pageCount = Math.max(1, Math.ceil(entries.length / pageSize));
+  state.pages[state.view] = Math.min(state.pages[state.view], pageCount);
+  const page = state.pages[state.view];
+  const start = (page - 1) * pageSize;
+  $("#results-summary").textContent = entries.length
+    ? `Showing ${start + 1}-${Math.min(start + pageSize, entries.length)} of ${entries.length} ${unit}${entries.length === 1 ? "" : "s"}`
+    : `0 ${unit}s found`;
+  $("#cards-layout").setAttribute("aria-pressed", String(state.layout === "cards"));
+  $("#list-layout").setAttribute("aria-pressed", String(state.layout === "list"));
+  $("#pagination").hidden = pageCount === 1;
+  $("#previous-page").disabled = page === 1;
+  $("#next-page").disabled = page === pageCount;
+  $("#page-summary").textContent = `Page ${page} of ${pageCount}`;
   const results = $("#results");
+  results.classList.toggle("list-view", state.layout === "list");
   results.replaceChildren();
   if (entries.length) {
-    results.append(...entries.map(card));
+    results.append(...entries.slice(start, start + pageSize).map(card));
   } else {
     const empty = element("div", "empty-state");
     const hasFilters = Boolean(query || type || selectedSet || tagQuery);
@@ -244,13 +258,34 @@ function render() {
   }
 }
 
-for (const selector of controls) $(selector).addEventListener($(selector).type === "search" ? "input" : "change", render);
+function resetPages() {
+  state.pages.rules = 1;
+  state.pages.rulesets = 1;
+}
+
+for (const selector of controls) $(selector).addEventListener($(selector).type === "search" ? "input" : "change", () => {
+  resetPages();
+  render();
+});
 $("#reset").addEventListener("click", () => {
   for (const selector of controls) $(selector).value = selector === "#sort" ? "name" : "";
+  resetPages();
   render();
 });
 for (const view of ["rules", "rulesets"]) $(`#${view}-view`).addEventListener("click", () => {
   state.view = view;
+  render();
+});
+for (const layout of ["cards", "list"]) $(`#${layout}-layout`).addEventListener("click", () => {
+  state.layout = layout;
+  render();
+});
+$("#previous-page").addEventListener("click", () => {
+  if (state.pages[state.view] > 1) state.pages[state.view]--;
+  render();
+});
+$("#next-page").addEventListener("click", () => {
+  if (!$("#next-page").disabled) state.pages[state.view]++;
   render();
 });
 $("#url-mode").addEventListener("change", () => {

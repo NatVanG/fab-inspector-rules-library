@@ -80,8 +80,13 @@ aside > input { width: 100%; min-width: 0; padding: 10px; margin-bottom: 24px; f
 .help-card a { color: var(--accent); font-size: 11px; font-weight: 600; display: block; margin-top: 20px; }
 .results-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 19px; min-height: 25px; color: var(--muted); font-size: 11px; }
 .results-heading p { margin: 0; }
+.results-controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 12px; }
 .results-heading select { background: transparent; border: none; color: var(--ink); font-size: 11px; padding: 4px; }
 .results { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.results.list-view { grid-template-columns: 1fr; }
+.pagination { display: flex; justify-content: center; align-items: center; gap: 16px; margin-top: 20px; font-size: 12px; color: var(--muted); }
+.pagination[hidden] { display: none; }
+.pagination button { padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; background: transparent; color: var(--ink); }
 .card { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 22px 22px 0; display: flex; flex-direction: column; min-width: 0; transition: box-shadow .15s, border-color .15s; }
 .card:hover { border-color: #dfa9c0; box-shadow: 0 4px 16px #64234810; }
 .card-top { display: flex; justify-content: space-between; align-items: start; gap: 8px; min-height: 24px; }
@@ -97,6 +102,16 @@ aside > input { width: 100%; min-width: 0; padding: 10px; margin-bottom: 24px; f
 .card-actions .text-button { font-size: 11px; }
 .download-button { background: var(--soft); color: var(--accent); border: 1px solid #f2d5e2; border-radius: 5px; padding: 6px 10px; font-size: 10px; font-weight: 600; }
 .download-button:hover { background: #fbdce9; }
+@media (min-width: 601px) {
+  .list-view .card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(160px, auto); grid-template-areas: "title top" "id selection" "description actions" "source actions"; column-gap: 20px; padding: 16px 20px; }
+  .list-view .card-top { grid-area: top; justify-content: flex-end; }
+  .list-view .rule-selection { grid-area: selection; justify-content: flex-end; margin-top: 4px; }
+  .list-view .card h3 { grid-area: title; margin: 0 0 5px; }
+  .list-view .rule-id { grid-area: id; }
+  .list-view .card-description { grid-area: description; margin: 8px 0; }
+  .list-view .card-source { grid-area: source; margin: 0; padding: 0; }
+  .list-view .card-actions { grid-area: actions; align-self: end; justify-content: flex-end; margin: 0; padding: 0; border: 0; }
+}
 .empty-state { grid-column: 1 / -1; text-align: center; padding: 65px 28px; border: 1px dashed #dfc4d4; border-radius: 12px; background: var(--soft); }
 .empty-icon { font: 38px monospace; color: var(--accent); }
 .empty-state h3 { font-size: 18px; margin: 22px 0 12px; }
