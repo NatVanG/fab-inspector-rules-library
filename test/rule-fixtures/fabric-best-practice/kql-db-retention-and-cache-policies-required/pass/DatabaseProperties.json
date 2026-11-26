@@ -1,0 +1,6 @@
+{
+  "databaseType": "ReadWrite",
+  "parentEventhouseItemId": "00000000-0000-0000-0000-0000000000ee",
+  "databaseRetention": "P30D",
+  "databaseCache": "P7D"
+}

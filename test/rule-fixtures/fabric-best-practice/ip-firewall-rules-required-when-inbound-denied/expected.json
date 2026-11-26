@@ -1,0 +1,6 @@
+{
+  "ruleId": "API_IP_FIREWALL_RULES_REQUIRED_WHEN_INBOUND_DENIED",
+  "description": "Pass: inbound Deny has an IP firewall allowlist. Fail: inbound Deny has no firewall rules.",
+  "pass": [],
+  "fail": ["DENY_WITHOUT_FIREWALL_ALLOWLIST"]
+}

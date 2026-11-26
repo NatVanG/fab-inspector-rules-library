@@ -1,0 +1,6 @@
+{
+  "ruleId": "API_PRIVILEGED_ROLES_GROUP_BASED",
+  "description": "Pass: privileged access is group-based and direct user is Viewer. Fail: a user is directly assigned Contributor.",
+  "pass": [],
+  "fail": ["Alex Contributor"]
+}

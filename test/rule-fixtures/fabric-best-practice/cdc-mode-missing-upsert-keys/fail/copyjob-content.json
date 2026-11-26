@@ -1,0 +1,36 @@
+{
+  "properties": {
+    "jobMode": "CDC",
+    "source": {
+      "type": "AzureSqlTable",
+      "connectionSettings": {
+        "type": "AzureSqlDatabase",
+        "typeProperties": { "database": "sampleSqlDb" },
+        "externalReferences": { "connection": "00000000-0000-0000-0000-000000000001" }
+      }
+    },
+    "destination": {
+      "type": "AzureSqlTable",
+      "connectionSettings": {
+        "type": "AzureSqlDatabase",
+        "typeProperties": { "database": "destSqlDb" },
+        "externalReferences": { "connection": "00000000-0000-0000-0000-000000000002" }
+      }
+    },
+    "policy": { "timeout": "0.12:00:00", "retry": 1 }
+  },
+  "activities": [
+    {
+      "id": "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb",
+      "properties": {
+        "source": { "datasetSettings": { "schema": "dbo", "table": "orders" } },
+        "destination": {
+          "datasetSettings": { "schema": "dbo", "table": "orders_dest" },
+          "writeBehavior": "Upsert",
+          "upsertSettings": { "useTempDB": true, "keys": [] }
+        },
+        "enableStaging": false
+      }
+    }
+  ]
+}

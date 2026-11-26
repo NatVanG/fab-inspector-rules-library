@@ -1,0 +1,24 @@
+{
+  "properties": {
+    "description": "Calls an external REST endpoint over TLS.",
+    "activities": [
+      {
+        "name": "CallExternalApi",
+        "type": "WebActivity",
+        "typeProperties": {
+          "url": "https://api.contoso.com/v1/status",
+          "method": "GET",
+          "disableCertValidation": false
+        }
+      },
+      {
+        "name": "NotifyWebhook",
+        "type": "WebHook",
+        "typeProperties": {
+          "url": "https://hooks.contoso.com/notify",
+          "method": "POST"
+        }
+      }
+    ]
+  }
+}

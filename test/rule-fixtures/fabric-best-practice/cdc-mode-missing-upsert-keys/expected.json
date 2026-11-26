@@ -1,0 +1,6 @@
+{
+  "ruleId": "COPYJOB_CDC_MISSING_UPSERT_KEYS",
+  "description": "Pass: CDC activity has destination upsert keys. Fail: CDC activity has empty upsert keys.",
+  "pass": [],
+  "fail": ["aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"]
+}

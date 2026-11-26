@@ -1,0 +1,6 @@
+{
+  "ruleId": "NOTEBOOK_VACUUM_RETENTION_FLOOR",
+  "description": "Pass: VACUUM RETAIN 168 HOURS (>= floor). Fail: VACUUM RETAIN 24 HOURS (below 168h floor).",
+  "pass": [],
+  "fail": ["nb_maintain_silver"]
+}

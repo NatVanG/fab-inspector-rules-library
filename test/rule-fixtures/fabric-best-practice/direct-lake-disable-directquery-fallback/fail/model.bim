@@ -1,0 +1,22 @@
+{
+  "name": "KpiExecutiveMetrics",
+  "compatibilityLevel": 1604,
+  "model": {
+    "culture": "en-US",
+    "directLakeBehavior": "Automatic",
+    "tables": [
+      {
+        "name": "Sales",
+        "mode": "directLake",
+        "partitions": [
+          {
+            "name": "Sales",
+            "mode": "directLake",
+            "source": { "type": "entity", "entityName": "sales", "schemaName": "dbo" }
+          }
+        ]
+      }
+    ],
+    "relationships": []
+  }
+}

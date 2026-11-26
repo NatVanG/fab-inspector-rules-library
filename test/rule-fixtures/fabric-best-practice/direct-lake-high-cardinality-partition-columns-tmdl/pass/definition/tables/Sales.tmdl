@@ -1,0 +1,27 @@
+table Sales
+
+	measure 'Total Sales' = SUM(Sales[Amount])
+		formatString: $ #,##0.00
+
+	column SalesKey
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: SalesKey
+
+	column Amount
+		dataType: decimal
+		summarizeBy: sum
+		sourceColumn: Amount
+
+	column RegionId
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RegionId
+
+	partition Sales = entity
+		mode: directLake
+		source
+			entityName: Sales
+			schemaName: dbo
+			expressionSource: DL_Lakehouse

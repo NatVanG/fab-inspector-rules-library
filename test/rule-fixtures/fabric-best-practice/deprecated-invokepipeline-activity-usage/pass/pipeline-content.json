@@ -1,0 +1,26 @@
+{
+  "properties": {
+    "description": "Loads dimension tables from source into the lakehouse.",
+    "activities": [
+      {
+        "name": "RunChildPipeline",
+        "type": "ExecutePipeline",
+        "typeProperties": {
+          "pipeline": {
+            "referenceName": "00000000-0000-0000-0000-000000000010",
+            "type": "PipelineReference"
+          },
+          "waitOnCompletion": true
+        }
+      },
+      {
+        "name": "CopyDimCustomer",
+        "type": "Copy",
+        "typeProperties": {},
+        "policy": {
+          "retry": 2
+        }
+      }
+    ]
+  }
+}

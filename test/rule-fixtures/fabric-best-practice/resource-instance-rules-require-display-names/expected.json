@@ -1,0 +1,6 @@
+{
+  "ruleId": "API_RESOURCE_INSTANCE_RULES_REQUIRE_DISPLAYNAMES",
+  "description": "Pass: resource instance rules have descriptive names. Fail: a rule uses a generic placeholder name.",
+  "pass": [],
+  "fail": ["/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-prod/providers/Microsoft.Sql/servers/sql-prod"]
+}

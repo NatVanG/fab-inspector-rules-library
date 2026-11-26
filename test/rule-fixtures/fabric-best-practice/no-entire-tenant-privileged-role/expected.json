@@ -1,0 +1,6 @@
+{
+  "ruleId": "API_NO_ENTIRE_TENANT_PRIVILEGED_ROLE",
+  "description": "Pass: entire tenant has Viewer only. Fail: entire tenant has Contributor.",
+  "pass": [],
+  "fail": ["Entire organization"]
+}

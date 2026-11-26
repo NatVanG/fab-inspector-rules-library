@@ -1,0 +1,20 @@
+{
+  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}/items": {
+    "value": [
+      {
+        "id": "11111111-aaaa-4aaa-8aaa-111111111111",
+        "displayName": "FIN_LH_Sales",
+        "description": "Curated finance sales lakehouse.",
+        "type": "Lakehouse",
+        "workspaceId": "aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee"
+      },
+      {
+        "id": "22222222-aaaa-4aaa-8aaa-222222222222",
+        "displayName": "FIN_LH_Sales",
+        "description": null,
+        "type": "SQLEndpoint",
+        "workspaceId": "aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee"
+      }
+    ]
+  }
+}

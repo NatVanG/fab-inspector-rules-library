@@ -1,0 +1,6 @@
+{
+  "ruleId": "REPORT_APPROVED_CUSTOM_THEME_ENFORCEMENT",
+  "description": "Pass: report uses an approved custom theme. Fail: report uses an unapproved custom theme.",
+  "pass": [],
+  "fail": ["Unapproved Theme"]
+}

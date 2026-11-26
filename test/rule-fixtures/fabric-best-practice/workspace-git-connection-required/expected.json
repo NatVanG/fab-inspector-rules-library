@@ -1,0 +1,6 @@
+{
+  "ruleId": "API_WORKSPACE_GIT_CONNECTION_REQUIRED",
+  "description": "Pass: Git connection is initialized. Fail: workspace is not connected.",
+  "pass": [],
+  "fail": ["NotConnected"]
+}

@@ -1,0 +1,10 @@
+{
+  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}/networking/communicationpolicy/inbound/azureresources": {
+    "rules": [
+      {
+        "displayName": "Production storage",
+        "resourceId": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-prod/providers/Microsoft.Storage/storageAccounts/stprod"
+      }
+    ]
+  }
+}

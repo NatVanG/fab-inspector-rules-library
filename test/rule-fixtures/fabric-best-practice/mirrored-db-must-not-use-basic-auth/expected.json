@@ -1,0 +1,6 @@
+{
+  "ruleId": "MIRROREDDB_MUST_NOT_USE_BASIC_AUTH",
+  "description": "Pass: mirrored DB connection uses ServicePrincipal auth. Fail: connection uses Basic authentication.",
+  "pass": [],
+  "fail": ["BASIC_AUTH_USED"]
+}

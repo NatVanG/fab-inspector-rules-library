@@ -1,0 +1,6 @@
+{
+  "ruleId": "NOTEBOOK_DELTA_WRITES_REQUIRE_OPTIMIZEWRITE",
+  "description": "Pass: delta write with optimizeWrite enabled. Fail: delta write without optimizeWrite enablement.",
+  "pass": [],
+  "fail": ["nb_write_silver_orders"]
+}

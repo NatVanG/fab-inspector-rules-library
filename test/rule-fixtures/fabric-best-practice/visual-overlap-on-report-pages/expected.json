@@ -1,0 +1,6 @@
+{
+  "ruleId": "REPORT_VISUAL_OVERLAP_PAIRS",
+  "description": "Pass: visible visuals do not overlap. Fail: two visible visual rectangles overlap.",
+  "pass": [],
+  "fail": ["VisualA", "VisualB"]
+}

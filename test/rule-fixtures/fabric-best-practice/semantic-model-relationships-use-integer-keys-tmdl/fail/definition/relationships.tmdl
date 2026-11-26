@@ -1,0 +1,4 @@
+relationship 'Sales to Customer'
+	fromColumn: Sales.CustomerCode
+	toColumn: Customer.CustomerCode
+	annotation keyType = string

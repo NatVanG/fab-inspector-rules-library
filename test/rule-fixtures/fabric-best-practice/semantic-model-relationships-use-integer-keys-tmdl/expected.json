@@ -1,0 +1,6 @@
+{
+  "ruleId": "SEMANTICMODEL_RELATIONSHIPS_USE_INTEGER_KEYS_TMDL",
+  "description": "Pass: relationship annotated keyType = integer (uses CustomerKey). Fail: relationship annotated keyType = string (uses CustomerCode).",
+  "pass": [],
+  "fail": ["relationships.tmdl"]
+}

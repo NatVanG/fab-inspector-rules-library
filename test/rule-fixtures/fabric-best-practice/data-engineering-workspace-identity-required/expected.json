@@ -1,0 +1,6 @@
+{
+  "ruleId": "API_DE_WORKSPACE_IDENTITY_REQUIRED",
+  "description": "Pass: a data-engineering workspace has an identity. Fail: a data-engineering workspace has no identity.",
+  "pass": [],
+  "fail": ["Sales Engineering [Prod]"]
+}

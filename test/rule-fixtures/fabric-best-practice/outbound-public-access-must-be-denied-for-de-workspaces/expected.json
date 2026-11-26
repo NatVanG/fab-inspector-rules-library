@@ -1,0 +1,6 @@
+{
+  "ruleId": "API_OUTBOUND_PUBLIC_ACCESS_MUST_BE_DENIED_FOR_DE",
+  "description": "Pass: a data engineering workspace denies outbound public access. Fail: it allows outbound public access.",
+  "pass": [],
+  "fail": ["OUTBOUND_DEFAULT_NOT_DENY_FOR_DE_WORKSPACE"]
+}

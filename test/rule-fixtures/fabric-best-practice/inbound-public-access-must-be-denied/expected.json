@@ -1,0 +1,6 @@
+{
+  "ruleId": "API_INBOUND_PUBLIC_ACCESS_MUST_BE_DENIED",
+  "description": "Pass: inbound public access defaults to Deny. Fail: it defaults to Allow.",
+  "pass": [],
+  "fail": ["INBOUND_DEFAULT_NOT_DENY"]
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://raw.githubusercontent.com/NatVanG/fab-inspector-test-harness/f651610a319d09d8710ef0549ab52bb1b32a7dc8/.ai-assets/RuleSchemas/fab-inspector-rules.schema.json",
+  "rules": [
+    {
+      "id": "API_WORKSPACE_GIT_CONNECTION_REQUIRED",
+      "name": "Workspace Must Have an Initialized Git Connection",
+      "description": "Returns the Git connection state unless it is ConnectedAndInitialized. Connect the workspace to an approved Git repository and initialize synchronization.",
+      "itemType": "none",
+      "test": [
+        {
+          "let": [
+            {
+              "connection": {
+                "apiget": [
+                  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}/git/connection"
+                ]
+              }
+            },
+            {
+              "if": [
+                { "!=": [ { "var": "connection.gitConnectionState" }, "ConnectedAndInitialized" ] },
+                [ { "var": "connection.gitConnectionState" } ],
+                []
+              ]
+            }
+          ]
+        },
+        []
+      ]
+    }
+  ]
+}

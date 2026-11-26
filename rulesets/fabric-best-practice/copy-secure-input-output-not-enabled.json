@@ -1,0 +1,61 @@
+{
+  "$schema": "https://raw.githubusercontent.com/NatVanG/fab-inspector-test-harness/f651610a319d09d8710ef0549ab52bb1b32a7dc8/.ai-assets/RuleSchemas/fab-inspector-rules.schema.json",
+  "rules": [
+    {
+      "id": "DP_COPY_SECURE_IO_NOT_ENABLED",
+      "name": "Secure Input/Output Not Enabled on Copy Activities",
+      "description": "Returns Copy activity names where policy.secureInput or policy.secureOutput is not true. WARNING: This rule was AI-generated and tested only against sample fixtures. Review before production use.",
+      "itemType": "DataPipeline",
+      "part": "pipeline-content.json",
+      "test": [
+        {
+          "map": [
+            {
+              "filter": [
+                {
+                  "var": "properties.activities"
+                },
+                {
+                  "and": [
+                    {
+                      "==": [
+                        {
+                          "var": "type"
+                        },
+                        "Copy"
+                      ]
+                    },
+                    {
+                      "or": [
+                        {
+                          "!=": [
+                            {
+                              "var": "policy.secureInput"
+                            },
+                            true
+                          ]
+                        },
+                        {
+                          "!=": [
+                            {
+                              "var": "policy.secureOutput"
+                            },
+                            true
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "var": "name"
+            }
+          ]
+        },
+        []
+      ]
+    }
+  ]
+}

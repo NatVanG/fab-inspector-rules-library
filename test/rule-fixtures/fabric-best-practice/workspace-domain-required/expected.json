@@ -1,0 +1,6 @@
+{
+  "ruleId": "API_WORKSPACE_DOMAIN_REQUIRED",
+  "description": "Pass: workspace is assigned to a Fabric domain. Fail: domainId is null.",
+  "pass": [],
+  "fail": ["Sales Analytics [Prod]"]
+}

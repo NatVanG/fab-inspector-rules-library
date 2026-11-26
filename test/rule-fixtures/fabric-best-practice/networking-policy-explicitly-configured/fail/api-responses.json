@@ -1,0 +1,6 @@
+{
+  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}/networking/communicationPolicy": {
+    "inbound": { "publicAccessRules": { "defaultAction": "Deny" } },
+    "outbound": {}
+  }
+}

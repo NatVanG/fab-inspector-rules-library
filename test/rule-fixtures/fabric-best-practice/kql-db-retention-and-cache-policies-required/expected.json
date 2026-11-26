@@ -1,0 +1,6 @@
+{
+  "ruleId": "KQLDB_RETENTION_AND_CACHE_POLICIES_REQUIRED",
+  "description": "Pass: both retention and cache policies defined. Fail: cache policy missing.",
+  "pass": [],
+  "fail": ["databaseCache"]
+}

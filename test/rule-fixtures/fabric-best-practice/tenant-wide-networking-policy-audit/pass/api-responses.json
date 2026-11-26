@@ -1,0 +1,22 @@
+{
+  "https://api.fabric.microsoft.com/v1/admin/workspaces/networking/communicationpolicies": {
+    "value": [
+      {
+        "workspaceId": "fa9ad228-3e6b-44d4-b5f4-e275f337afa9",
+        "workspaceName": "Finance Analytics",
+        "workspaceType": "Workspace",
+        "inbound": {
+          "publicAccessRules": { "defaultAction": "Deny" },
+          "firewall": { "rules": [ { "displayName": "CorpNet", "value": "10.0.0.0-10.255.255.255" } ] }
+        },
+        "outbound": {
+          "publicAccessRules": { "defaultAction": "Deny" },
+          "connections": { "defaultAction": "Deny", "rules": [] },
+          "gateways": { "defaultAction": "Deny", "allowedGateways": [] },
+          "git": { "defaultAction": "Deny" },
+          "managedPrivateEndpoints": []
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}/onelake/settings": {
+    "diagnostics": {
+      "enabled": true,
+      "destination": { "workspaceId": "aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee", "itemId": "21000000-0000-4000-8000-000000000001" }
+    },
+    "lifecycle": {
+      "rules": [
+        { "name": "archive-raw", "enabled": true, "type": "Lifecycle", "definition": {} }
+      ]
+    }
+  }
+}

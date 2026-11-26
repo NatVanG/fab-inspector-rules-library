@@ -1,0 +1,7 @@
+{
+  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}/items": {
+    "value": [
+      { "id": "20000000-0000-4000-8000-000000000003", "displayName": "SalesLakehouse", "description": "Sales lakehouse.", "type": "Lakehouse", "workspaceId": "aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee" }
+    ]
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "ruleId": "DP_FOREACH_UNCONSTRAINED_BATCHCOUNT",
+  "description": "Pass: parallel ForEach with batchCount 20 (<= 50). Fail: parallel ForEach with batchCount 100 (> 50).",
+  "pass": [],
+  "fail": ["ForEachTable"]
+}

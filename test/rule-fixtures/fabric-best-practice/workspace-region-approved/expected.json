@@ -1,0 +1,6 @@
+{
+  "ruleId": "API_WORKSPACE_REGION_APPROVED",
+  "description": "Pass: capacity region is in the configured allowlist. Fail: region is not approved.",
+  "pass": [],
+  "fail": ["Australia East"]
+}

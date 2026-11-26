@@ -1,0 +1,6 @@
+{
+  "ruleId": "ADMIN_TENANT_NETWORKING_POLICY_AUDIT",
+  "description": "Pass: every listed workspace denies inbound and outbound public access. Fail: a workspace allows public access.",
+  "pass": [],
+  "fail": ["b2c3d4e5-f6a7-4890-abcd-ef1234567890"]
+}

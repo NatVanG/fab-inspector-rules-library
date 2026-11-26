@@ -1,0 +1,6 @@
+{
+  "ruleId": "API_IP_FIREWALL_NO_BROAD_CIDR",
+  "description": "Pass: the firewall rule is narrowly scoped. Fail: a wildcard CIDR allows every IPv4 address.",
+  "pass": [],
+  "fail": ["0.0.0.0/0"]
+}

@@ -1,0 +1,6 @@
+{
+  "ruleId": "EVENTSTREAM_RETENTION_EXPLICITLY_CONFIGURED",
+  "description": "Pass: retentionInDays set within [1,90]. Fail: retentionInDays missing.",
+  "pass": [],
+  "fail": ["EVENTSTREAM_RETENTION_INVALID"]
+}

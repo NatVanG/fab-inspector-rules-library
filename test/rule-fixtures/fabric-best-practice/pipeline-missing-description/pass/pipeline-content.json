@@ -1,0 +1,15 @@
+{
+  "properties": {
+    "description": "Loads sales fact data from the source system into the gold lakehouse each night.",
+    "activities": [
+      {
+        "name": "CopyFactSales",
+        "type": "Copy",
+        "typeProperties": {},
+        "policy": {
+          "retry": 2
+        }
+      }
+    ]
+  }
+}

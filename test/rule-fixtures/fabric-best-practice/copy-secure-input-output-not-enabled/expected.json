@@ -1,0 +1,6 @@
+{
+  "ruleId": "DP_COPY_SECURE_IO_NOT_ENABLED",
+  "description": "Pass: Copy activity sets secureInput and secureOutput true. Fail: Copy activity leaves secure I/O disabled.",
+  "pass": [],
+  "fail": ["CopyDimCustomer"]
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://raw.githubusercontent.com/NatVanG/fab-inspector-test-harness/f651610a319d09d8710ef0549ab52bb1b32a7dc8/.ai-assets/RuleSchemas/fab-inspector-rules.schema.json",
+  "rules": [
+    {
+      "id": "EVENTSTREAM_RETENTION_EXPLICITLY_CONFIGURED",
+      "name": "Eventstream Retention Explicitly Configured",
+      "description": "Returns a marker when retentionInDays is missing or outside [1, 90]. WARNING: This rule was AI-generated and tested only against sample fixtures. Review before production use.",
+      "itemType": "Eventstream",
+      "part": "eventstream.json",
+      "test": [
+        {
+          "if": [
+            {
+              "or": [
+                { "isnullorempty": [ { "var": "properties.retentionInDays" } ] },
+                { "<": [ { "var": "properties.retentionInDays" }, 1 ] },
+                { ">": [ { "var": "properties.retentionInDays" }, 90 ] }
+              ]
+            },
+            ["EVENTSTREAM_RETENTION_INVALID"],
+            []
+          ]
+        },
+        []
+      ]
+    }
+  ]
+}

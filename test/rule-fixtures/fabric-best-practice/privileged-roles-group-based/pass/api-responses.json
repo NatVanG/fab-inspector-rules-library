@@ -1,0 +1,21 @@
+{
+  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}/roleAssignments": {
+    "value": [
+      {
+        "id": "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb",
+        "principal": { "displayName": "Fabric Administrators", "id": "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb", "type": "Group" },
+        "role": "Admin"
+      },
+      {
+        "id": "cccccccc-1111-2222-3333-dddddddddddd",
+        "principal": {
+          "displayName": "Alex Viewer",
+          "id": "cccccccc-1111-2222-3333-dddddddddddd",
+          "type": "User",
+          "userDetails": { "userPrincipalName": "alex@contoso.com" }
+        },
+        "role": "Viewer"
+      }
+    ]
+  }
+}

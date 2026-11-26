@@ -1,0 +1,6 @@
+{
+  "ruleId": "API_WORKSPACE_ADMIN_COUNT_LIMIT",
+  "description": "Pass: workspace has three Admin assignments. Fail: workspace has four Admin assignments.",
+  "pass": [],
+  "fail": ["Platform Admins", "Domain Admins", "Support Admins", "Legacy Admins"]
+}

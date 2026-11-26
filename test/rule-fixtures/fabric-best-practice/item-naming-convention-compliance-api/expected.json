@@ -1,0 +1,6 @@
+{
+  "ruleId": "API_ITEM_NAMING_CONVENTION_COMPLIANCE",
+  "description": "Pass: item names use approved domain prefixes. Fail: a non-SQL endpoint item lacks an approved prefix.",
+  "pass": [],
+  "fail": ["SalesLakehouse"]
+}

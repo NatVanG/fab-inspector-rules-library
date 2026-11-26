@@ -1,0 +1,6 @@
+{
+  "ruleId": "REPORT_CROSS_HIGHLIGHT_DISABLED_FOR_SLOW_SOURCES",
+  "description": "Pass: cross-highlighting is enabled. Fail: cross-highlighting is disabled for slow sources.",
+  "pass": [],
+  "fail": [{ "isCrossHighlightingDisabled": true }]
+}

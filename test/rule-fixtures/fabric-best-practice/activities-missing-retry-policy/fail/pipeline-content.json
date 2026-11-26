@@ -1,0 +1,17 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "name": "CopyCustomers",
+        "type": "Copy",
+        "policy": { "retry": 0 },
+        "typeProperties": {}
+      },
+      {
+        "name": "RunNotebook",
+        "type": "TridentNotebook",
+        "typeProperties": {}
+      }
+    ]
+  }
+}

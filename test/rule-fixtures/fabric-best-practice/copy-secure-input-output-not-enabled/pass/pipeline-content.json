@@ -1,0 +1,17 @@
+{
+  "properties": {
+    "description": "Copies data with secure input and output enabled.",
+    "activities": [
+      {
+        "name": "CopyDimCustomer",
+        "type": "Copy",
+        "typeProperties": {},
+        "policy": {
+          "retry": 2,
+          "secureInput": true,
+          "secureOutput": true
+        }
+      }
+    ]
+  }
+}

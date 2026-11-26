@@ -1,0 +1,47 @@
+{
+  "$schema": "https://raw.githubusercontent.com/NatVanG/fab-inspector-test-harness/f651610a319d09d8710ef0549ab52bb1b32a7dc8/.ai-assets/RuleSchemas/fab-inspector-rules.schema.json",
+  "rules": [
+    {
+      "id": "ADMIN_TENANT_NETWORKING_POLICY_AUDIT",
+      "name": "Tenant-Wide Networking Policy Audit",
+      "description": "Calls the tenant admin networking communication policies API and returns workspace IDs where inbound or outbound public access is allowed.",
+      "itemType": "none",
+      "test": [
+        {
+          "let": [
+            {
+              "response": {
+                "apiget": [
+                  "https://api.fabric.microsoft.com/v1/admin/workspaces/networking/communicationpolicies"
+                ]
+              },
+              "policies": {
+                "query": [
+                  { "var": "response" },
+                  { "path": "$.value[*]" }
+                ]
+              }
+            },
+            {
+              "map": [
+                {
+                  "filter": [
+                    { "var": "policies" },
+                    {
+                      "or": [
+                        { "==": [ { "var": "inbound.publicAccessRules.defaultAction" }, "Allow" ] },
+                        { "==": [ { "var": "outbound.publicAccessRules.defaultAction" }, "Allow" ] }
+                      ]
+                    }
+                  ]
+                },
+                { "var": "workspaceId" }
+              ]
+            }
+          ]
+        },
+        []
+      ]
+    }
+  ]
+}

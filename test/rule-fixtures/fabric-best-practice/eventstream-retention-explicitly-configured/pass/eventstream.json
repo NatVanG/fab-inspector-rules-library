@@ -1,0 +1,14 @@
+{
+  "properties": {
+    "retentionInDays": 7,
+    "sources": [
+      { "name": "SampleData", "type": "SampleData" }
+    ],
+    "destinations": [
+      { "name": "BronzeLakehouse", "type": "Lakehouse" }
+    ],
+    "streams": [],
+    "operators": [],
+    "compatibilityLevel": "1.0"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "KpiExecutiveMetrics",
+  "compatibilityLevel": 1604,
+  "model": {
+    "tables": [
+      { "name": "Sales" },
+      { "name": "Customer" }
+    ],
+    "relationships": [
+      {
+        "name": "Sales_Customer",
+        "fromTable": "Sales",
+        "fromColumn": "CustomerCode",
+        "toTable": "Customer",
+        "toColumn": "CustomerCode",
+        "keyType": "string"
+      }
+    ]
+  }
+}

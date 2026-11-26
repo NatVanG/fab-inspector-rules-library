@@ -1,0 +1,18 @@
+{
+  "properties": {
+    "description": "Pipeline that kept default activity names from the designer.",
+    "activities": [
+      {
+        "name": "Copy data1",
+        "type": "Copy",
+        "typeProperties": {},
+        "policy": { "retry": 2 }
+      },
+      {
+        "name": "Notebook1",
+        "type": "TridentNotebook",
+        "typeProperties": {}
+      }
+    ]
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "ruleId": "API_SERVICE_PRINCIPALS_APPROVED",
+  "description": "Pass: service principal application ID is approved. Fail: application ID is outside the allowlist.",
+  "pass": [],
+  "fail": ["Unknown Automation Identity"]
+}

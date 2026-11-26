@@ -1,0 +1,59 @@
+{
+  "$schema": "https://raw.githubusercontent.com/NatVanG/fab-inspector-test-harness/f651610a319d09d8710ef0549ab52bb1b32a7dc8/.ai-assets/RuleSchemas/fab-inspector-rules.schema.json",
+  "rules": [
+    {
+      "id": "API_DE_WORKSPACE_IDENTITY_REQUIRED",
+      "name": "Data Engineering Workspace Must Have a Workspace Identity",
+      "description": "Returns the workspace display name when it contains Notebook, Lakehouse, or SparkJobDefinition items but has no workspace identity. Create a workspace identity for credential-free authentication and trusted workspace access.",
+      "itemType": "none",
+      "test": [
+        {
+          "let": [
+            {
+              "workspace": {
+                "apiget": [
+                  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}"
+                ]
+              },
+              "itemsResponse": {
+                "apiget": [
+                  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}/items"
+                ]
+              },
+              "items": {
+                "query": [ { "var": "itemsResponse" }, { "path": "$.value[*]" } ]
+              }
+            },
+            {
+              "if": [
+                {
+                  "and": [
+                    {
+                      ">": [
+                        {
+                          "count": [
+                            {
+                              "filter": [
+                                { "var": "items" },
+                                { "in": [ { "var": "type" }, [ "Notebook", "Lakehouse", "SparkJobDefinition" ] ] }
+                              ]
+                            }
+                          ]
+                        },
+                        0
+                      ]
+                    },
+                    { "isnullorempty": [ { "var": "workspace.workspaceIdentity" } ] }
+                  ]
+                },
+                [ { "var": "workspace.displayName" } ],
+                []
+              ]
+            }
+          ]
+        },
+        []
+      ]
+    }
+  ]
+}

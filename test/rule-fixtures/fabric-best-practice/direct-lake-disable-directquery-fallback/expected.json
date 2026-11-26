@@ -1,0 +1,6 @@
+{
+  "ruleId": "SEMANTICMODEL_DIRECTLAKE_DIRECTQUERY_FALLBACK_DISABLED",
+  "description": "Pass: Direct Lake model sets directLakeBehavior=DirectLakeOnly. Fail: Direct Lake model allows DirectQuery fallback (Automatic).",
+  "pass": [],
+  "fail": ["DIRECTLAKE_FALLBACK_NOT_DISABLED"]
+}

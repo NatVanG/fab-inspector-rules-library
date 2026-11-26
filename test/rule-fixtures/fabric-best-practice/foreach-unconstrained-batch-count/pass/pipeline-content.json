@@ -1,0 +1,20 @@
+{
+  "properties": {
+    "description": "Iterates over a bounded set of tables and copies each.",
+    "activities": [
+      {
+        "name": "ForEachTable",
+        "type": "ForEach",
+        "typeProperties": {
+          "isSequential": false,
+          "batchCount": 20,
+          "items": {
+            "value": "@pipeline().parameters.tableList",
+            "type": "Expression"
+          },
+          "activities": []
+        }
+      }
+    ]
+  }
+}

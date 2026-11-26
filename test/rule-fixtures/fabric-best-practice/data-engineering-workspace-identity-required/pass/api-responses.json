@@ -1,0 +1,20 @@
+{
+  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}": {
+    "id": "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb",
+    "displayName": "Sales Engineering [Prod]",
+    "workspaceIdentity": {
+      "applicationId": "cccccccc-1111-2222-3333-dddddddddddd",
+      "servicePrincipalId": "eeeeeeee-1111-2222-3333-ffffffffffff"
+    }
+  },
+  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}/items": {
+    "value": [
+      {
+        "id": "99999999-1111-2222-3333-000000000000",
+        "displayName": "NB_Sales_Ingest",
+        "type": "Notebook",
+        "workspaceId": "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+      }
+    ]
+  }
+}

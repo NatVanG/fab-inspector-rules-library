@@ -1,0 +1,6 @@
+{
+  "ruleId": "DP_PIPELINE_MISSING_DESCRIPTION",
+  "description": "Pass: properties.description is populated. Fail: properties.description is empty.",
+  "pass": true,
+  "fail": false
+}

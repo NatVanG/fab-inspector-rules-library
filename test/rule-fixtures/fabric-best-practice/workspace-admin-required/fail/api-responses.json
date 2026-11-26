@@ -1,0 +1,11 @@
+{
+  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}/roleAssignments": {
+    "value": [
+      {
+        "id": "cccccccc-1111-2222-3333-dddddddddddd",
+        "principal": { "displayName": "Fabric Contributors", "id": "cccccccc-1111-2222-3333-dddddddddddd", "type": "Group" },
+        "role": "Contributor"
+      }
+    ]
+  }
+}

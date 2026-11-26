@@ -1,0 +1,16 @@
+{
+  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}/roleAssignments": {
+    "value": [
+      {
+        "id": "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb",
+        "principal": {
+          "displayName": "Approved Deployment Identity",
+          "id": "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb",
+          "type": "ServicePrincipal",
+          "servicePrincipalDetails": { "aadAppId": "11111111-1111-1111-1111-111111111111" }
+        },
+        "role": "Contributor"
+      }
+    ]
+  }
+}

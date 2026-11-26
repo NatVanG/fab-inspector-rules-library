@@ -1,0 +1,11 @@
+{
+  "properties": {
+    "source": {
+      "type": "AzureSqlDatabase",
+      "typeProperties": { "database": "sourceSqlDb" }
+    }
+  },
+  "connection": {
+    "credentialType": "ServicePrincipal"
+  }
+}

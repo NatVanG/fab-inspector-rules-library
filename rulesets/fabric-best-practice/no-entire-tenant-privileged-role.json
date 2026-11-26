@@ -1,0 +1,45 @@
+{
+  "$schema": "https://raw.githubusercontent.com/NatVanG/fab-inspector-test-harness/f651610a319d09d8710ef0549ab52bb1b32a7dc8/.ai-assets/RuleSchemas/fab-inspector-rules.schema.json",
+  "rules": [
+    {
+      "id": "API_NO_ENTIRE_TENANT_PRIVILEGED_ROLE",
+      "name": "Entire Tenant Must Not Have a Privileged Workspace Role",
+      "description": "Returns tenant-wide principals assigned Admin, Member, or Contributor. Remove broad tenant access and grant the minimum role to specific groups or principals.",
+      "itemType": "none",
+      "logType": "error",
+      "test": [
+        {
+          "let": [
+            {
+              "response": {
+                "apiget": [
+                  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}/roleAssignments"
+                ]
+              },
+              "assignments": {
+                "query": [ { "var": "response" }, { "path": "$.value[*]" } ]
+              }
+            },
+            {
+              "map": [
+                {
+                  "filter": [
+                    { "var": "assignments" },
+                    {
+                      "and": [
+                        { "==": [ { "var": "principal.type" }, "EntireTenant" ] },
+                        { "in": [ { "var": "role" }, [ "Admin", "Member", "Contributor" ] ] }
+                      ]
+                    }
+                  ]
+                },
+                { "var": "principal.displayName" }
+              ]
+            }
+          ]
+        },
+        []
+      ]
+    }
+  ]
+}

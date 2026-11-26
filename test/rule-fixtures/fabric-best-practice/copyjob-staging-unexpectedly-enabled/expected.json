@@ -1,0 +1,6 @@
+{
+  "ruleId": "COPYJOB_STAGING_UNEXPECTEDLY_ENABLED",
+  "description": "Pass: no activity enables staging. Fail: an activity sets enableStaging=true.",
+  "pass": [],
+  "fail": ["aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"]
+}

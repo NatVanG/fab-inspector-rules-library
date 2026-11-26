@@ -1,0 +1,17 @@
+{
+  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}": {
+    "id": "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb",
+    "displayName": "Sales Engineering [Prod]",
+    "workspaceIdentity": null
+  },
+  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}/items": {
+    "value": [
+      {
+        "id": "99999999-1111-2222-3333-000000000000",
+        "displayName": "LH_Sales_Bronze",
+        "type": "Lakehouse",
+        "workspaceId": "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+      }
+    ]
+  }
+}

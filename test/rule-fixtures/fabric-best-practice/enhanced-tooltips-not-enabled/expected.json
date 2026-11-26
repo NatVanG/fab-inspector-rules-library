@@ -1,0 +1,6 @@
+{
+  "ruleId": "REPORT_ENHANCED_TOOLTIPS_NOT_ENABLED",
+  "description": "Pass: enhanced tooltips are enabled. Fail: enhanced tooltips are disabled.",
+  "pass": [],
+  "fail": [{ "useEnhancedTooltips": false }]
+}

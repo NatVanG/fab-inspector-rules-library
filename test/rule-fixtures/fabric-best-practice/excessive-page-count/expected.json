@@ -1,0 +1,6 @@
+{
+  "ruleId": "REPORT_EXCESSIVE_PAGE_COUNT",
+  "description": "Pass: report has no more than 15 pages. Fail: report has 16 pages.",
+  "pass": [],
+  "fail": [{ "pageCount": 16, "maxAllowed": 15 }]
+}

@@ -1,0 +1,7 @@
+{
+  "https://api.fabric.microsoft.com/v1/workspaces/{context-fabricworkspace}/onelake/settings": {
+    "diagnostics": {
+      "enabled": false
+    }
+  }
+}
