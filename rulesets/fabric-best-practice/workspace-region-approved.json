@@ -3,6 +3,7 @@
   "rules": [
     {
       "id": "API_WORKSPACE_REGION_APPROVED",
+      "tags": ["workspace", "governance", "compliance"],
       "name": "Workspace Capacity Region Must Be Approved",
       "description": "Returns the capacity region when it is outside the configured allowlist. Replace the example allowlist with the organization's supported Fabric regions.",
       "itemType": "none",

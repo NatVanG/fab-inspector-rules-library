@@ -3,6 +3,7 @@
   "rules": [
     {
       "id": "API_NO_ENTIRE_TENANT_PRIVILEGED_ROLE",
+      "tags": ["security", "access-control", "governance"],
       "name": "Entire Tenant Must Not Have a Privileged Workspace Role",
       "description": "Returns tenant-wide principals assigned Admin, Member, or Contributor. Remove broad tenant access and grant the minimum role to specific groups or principals.",
       "itemType": "none",

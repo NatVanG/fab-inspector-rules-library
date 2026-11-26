@@ -3,6 +3,7 @@
   "rules": [
     {
       "id": "API_DE_WORKSPACE_IDENTITY_REQUIRED",
+      "tags": ["identity", "security", "data-engineering"],
       "name": "Data Engineering Workspace Must Have a Workspace Identity",
       "description": "Returns the workspace display name when it contains Notebook, Lakehouse, or SparkJobDefinition items but has no workspace identity. Create a workspace identity for credential-free authentication and trusted workspace access.",
       "itemType": "none",

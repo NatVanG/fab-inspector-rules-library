@@ -3,6 +3,7 @@
   "rules": [
     {
       "id": "API_ONELAKE_WORKSPACE_STORAGE_SETTINGS_AUDIT",
+      "tags": ["onelake", "governance", "configuration"],
       "name": "OneLake Workspace Storage Settings Audit",
       "description": "Calls OneLake settings and returns missing expected top-level properties. WARNING: This rule was AI-generated and tested only against sample fixtures. Review before production use.",
       "itemType": "none",

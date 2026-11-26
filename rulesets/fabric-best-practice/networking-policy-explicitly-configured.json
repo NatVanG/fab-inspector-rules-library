@@ -3,6 +3,7 @@
   "rules": [
     {
       "id": "API_NETWORKING_POLICY_EXPLICITLY_CONFIGURED",
+      "tags": ["security", "networking", "configuration"],
       "name": "Workspace Networking Policy Is Explicitly Configured",
       "description": "Returns markers when inbound or outbound defaultAction is missing. WARNING: This rule was AI-generated and tested only against sample fixtures. Review before production use.",
       "itemType": "none",

@@ -3,6 +3,7 @@
   "rules": [
     {
       "id": "DP_COPY_SECURE_IO_NOT_ENABLED",
+      "tags": ["security", "data-pipeline", "configuration"],
       "name": "Secure Input/Output Not Enabled on Copy Activities",
       "description": "Returns Copy activity names where policy.secureInput or policy.secureOutput is not true. WARNING: This rule was AI-generated and tested only against sample fixtures. Review before production use.",
       "itemType": "DataPipeline",

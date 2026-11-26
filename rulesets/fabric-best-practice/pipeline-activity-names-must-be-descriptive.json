@@ -3,6 +3,7 @@
   "rules": [
     {
       "id": "DP_ACTIVITY_NAMES_MUST_BE_DESCRIPTIVE",
+      "tags": ["data-pipeline", "naming", "governance"],
       "name": "Data Pipeline Activity Names Must Be Descriptive",
       "description": "Returns activity names that match default Fabric naming patterns. WARNING: This rule was AI-generated and tested only against sample fixtures. Review before production use.",
       "itemType": "DataPipeline",

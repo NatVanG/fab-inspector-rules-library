@@ -3,6 +3,7 @@
   "rules": [
     {
       "id": "API_WORKSPACE_TAGS_REQUIRED",
+      "tags": ["workspace", "governance", "classification"],
       "name": "Workspace Must Have Governance Tags",
       "description": "Returns the workspace display name when no tags are assigned. Add governance tags that identify the workspace domain, purpose, or classification.",
       "itemType": "none",

@@ -3,6 +3,7 @@
   "rules": [
     {
       "id": "REPORT_EXCESSIVE_PAGE_COUNT",
+      "tags": ["reporting", "usability", "governance"],
       "name": "Excessive Page Count",
       "description": "Returns page count details when the report exceeds the configured maximum number of pages. WARNING: This rule was AI-generated and tested only against sample fixtures. Review before production use.",
       "itemType": "Report",

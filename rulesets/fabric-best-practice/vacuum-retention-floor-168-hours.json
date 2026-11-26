@@ -3,6 +3,7 @@
   "rules": [
     {
       "id": "NOTEBOOK_VACUUM_RETENTION_FLOOR",
+      "tags": ["lakehouse", "data-retention", "notebook"],
       "name": "Lakehouse Table Maintenance VACUUM Retention Floor",
       "description": "Returns notebook file name when VACUUM RETAIN uses retention below 168 hours. WARNING: This rule was AI-generated and tested only against sample fixtures. Review before production use.",
       "itemType": "Notebook",

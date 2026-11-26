@@ -3,6 +3,7 @@
   "rules": [
     {
       "id": "API_WORKSPACE_ADMIN_REQUIRED",
+      "tags": ["security", "access-control", "workspace"],
       "name": "Workspace Must Have an Administrator",
       "description": "Returns a marker when the complete workspace role-assignment collection has no Admin. Assign at least one accountable administrator.",
       "itemType": "none",

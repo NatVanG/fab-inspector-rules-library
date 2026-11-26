@@ -3,6 +3,7 @@
   "rules": [
     {
       "id": "API_WORKSPACE_CAPACITY_ASSIGNMENT_HEALTHY",
+      "tags": ["workspace", "reliability", "capacity"],
       "name": "Workspace Capacity Assignment Must Be Healthy",
       "description": "Returns the workspace display name when no capacity is assigned or the latest assignment is not Completed. Assign a Fabric capacity and resolve failed or in-progress assignments.",
       "itemType": "none",

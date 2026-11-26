@@ -3,6 +3,7 @@
   "rules": [
     {
       "id": "REPORT_CROSS_HIGHLIGHT_DISABLED_FOR_SLOW_SOURCES",
+      "tags": ["reporting", "performance", "configuration"],
       "name": "Cross-Highlight Not Disabled for Slow Sources",
       "description": "Returns a marker when slowDataSourceSettings.isCrossHighlightingDisabled is true. WARNING: This rule was AI-generated and tested only against sample fixtures. Review before production use.",
       "itemType": "Report",

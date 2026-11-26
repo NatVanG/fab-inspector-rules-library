@@ -3,6 +3,7 @@
   "rules": [
     {
       "id": "API_PRIVILEGED_ROLES_GROUP_BASED",
+      "tags": ["security", "access-control", "identity"],
       "name": "Privileged Workspace Roles Should Be Group Based",
       "description": "Returns individual users assigned Admin, Member, or Contributor. Replace direct user assignments with governed Microsoft Entra groups unless an approved exception exists.",
       "itemType": "none",

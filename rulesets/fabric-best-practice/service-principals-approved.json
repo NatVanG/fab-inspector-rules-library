@@ -3,6 +3,7 @@
   "rules": [
     {
       "id": "API_SERVICE_PRINCIPALS_APPROVED",
+      "tags": ["security", "identity", "access-control"],
       "name": "Workspace Service Principals Must Be Approved",
       "description": "Returns service principals whose Microsoft Entra application ID is outside the configured allowlist. Replace the example IDs with approved automation identities or remove the assignment.",
       "itemType": "none",

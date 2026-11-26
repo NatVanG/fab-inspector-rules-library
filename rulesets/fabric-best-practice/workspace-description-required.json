@@ -3,6 +3,7 @@
   "rules": [
     {
       "id": "API_WORKSPACE_DESCRIPTION_REQUIRED",
+      "tags": ["workspace", "documentation", "governance"],
       "name": "Workspace Description Required",
       "description": "Returns the workspace display name when its description is empty. Add a description that states the workspace purpose, owner, and intended data products.",
       "itemType": "none",

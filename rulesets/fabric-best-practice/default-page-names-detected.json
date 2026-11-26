@@ -3,6 +3,7 @@
   "rules": [
     {
       "id": "REPORT_DEFAULT_PAGE_NAMES_DETECTED",
+      "tags": ["reporting", "naming", "usability"],
       "name": "Default Page Names Detected",
       "description": "Returns report page display names that still match default naming like 'Page 1'. WARNING: This rule was AI-generated and tested only against sample fixtures. Review before production use.",
       "itemType": "Report",

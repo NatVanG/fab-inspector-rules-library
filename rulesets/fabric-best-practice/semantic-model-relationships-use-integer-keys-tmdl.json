@@ -3,6 +3,7 @@
   "rules": [
     {
       "id": "SEMANTICMODEL_RELATIONSHIPS_USE_INTEGER_KEYS_TMDL",
+      "tags": ["semantic-model", "data-modeling", "tmdl"],
       "name": "Semantic Model Must Use Integer Keys in Relationships (TMDL)",
       "description": "TMDL variant of rule 36. Returns definition/relationships.tmdl when a relationship is annotated 'keyType = string'. Prefer integer surrogate keys for relationships. WARNING: This rule was AI-generated and tested only against sample fixtures. Review before production use.",
       "itemType": "SemanticModel",

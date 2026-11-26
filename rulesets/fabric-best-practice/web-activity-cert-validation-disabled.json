@@ -3,6 +3,7 @@
   "rules": [
     {
       "id": "DP_WEB_ACTIVITY_CERT_VALIDATION_DISABLED",
+      "tags": ["security", "data-pipeline", "authentication"],
       "name": "Web Activity Certificate Validation Disabled",
       "description": "Returns WebActivity or WebHook activity names where disableCertValidation is true. WARNING: This rule was AI-generated and tested only against sample fixtures. Review before production use.",
       "itemType": "DataPipeline",

@@ -3,6 +3,7 @@
   "rules": [
     {
       "id": "API_ITEMS_WITHOUT_DESCRIPTION",
+      "tags": ["governance", "documentation", "workspace"],
       "name": "Items Without a Description",
       "description": "Calls the workspace items API and returns display names where description is null or empty. WARNING: This rule was AI-generated and tested only against sample fixtures. Review before production use.",
       "itemType": "none",

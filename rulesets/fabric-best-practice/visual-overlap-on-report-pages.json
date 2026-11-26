@@ -3,6 +3,7 @@
   "rules": [
     {
       "id": "REPORT_VISUAL_OVERLAP_PAIRS",
+      "tags": ["reporting", "usability", "layout"],
       "name": "Visual Overlap on Report Pages",
       "description": "Checks each visible page for overlapping visual rectangles and returns overlapping visual pairs. WARNING: This rule was AI-generated and tested only against sample fixtures. Review before production use.",
       "itemType": "Report",

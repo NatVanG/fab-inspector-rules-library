@@ -3,6 +3,7 @@
   "rules": [
     {
       "id": "API_WORKSPACE_ADMIN_COUNT_LIMIT",
+      "tags": ["security", "access-control", "workspace"],
       "name": "Workspace Administrator Count Must Be Limited",
       "description": "Returns administrator display names when more than three Admin assignments exist. Adjust the threshold to organizational policy and remove unnecessary administrators.",
       "itemType": "none",

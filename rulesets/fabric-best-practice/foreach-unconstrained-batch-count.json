@@ -3,6 +3,7 @@
   "rules": [
     {
       "id": "DP_FOREACH_UNCONSTRAINED_BATCHCOUNT",
+      "tags": ["data-pipeline", "performance", "configuration"],
       "name": "ForEach Unconstrained Batch Count",
       "description": "Returns ForEach activity names where isSequential=false and batchCount is missing or > 50. WARNING: This rule was AI-generated and tested only against sample fixtures. Review before production use.",
       "itemType": "DataPipeline",

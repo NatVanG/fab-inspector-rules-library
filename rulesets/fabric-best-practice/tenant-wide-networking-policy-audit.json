@@ -3,6 +3,7 @@
   "rules": [
     {
       "id": "ADMIN_TENANT_NETWORKING_POLICY_AUDIT",
+      "tags": ["security", "networking", "governance"],
       "name": "Tenant-Wide Networking Policy Audit",
       "description": "Calls the tenant admin networking communication policies API and returns workspace IDs where inbound or outbound public access is allowed.",
       "itemType": "none",

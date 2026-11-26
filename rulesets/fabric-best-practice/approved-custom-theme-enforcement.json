@@ -3,6 +3,7 @@
   "rules": [
     {
       "id": "REPORT_APPROVED_CUSTOM_THEME_ENFORCEMENT",
+      "tags": ["reporting", "governance", "configuration"],
       "name": "Approved Custom Theme Enforcement",
       "description": "Returns the detected custom theme name when it is missing or not in the approved allowlist. WARNING: This rule was AI-generated and tested only against sample fixtures. Review before production use.",
       "itemType": "Report",

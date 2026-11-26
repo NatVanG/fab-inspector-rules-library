@@ -3,6 +3,7 @@
   "rules": [
     {
       "id": "API_WORKSPACE_DOMAIN_REQUIRED",
+      "tags": ["workspace", "governance", "data-ownership"],
       "name": "Workspace Must Be Assigned to a Domain",
       "description": "Returns the workspace display name when domainId is empty. Assign the workspace to the Fabric domain that owns its data products.",
       "itemType": "none",

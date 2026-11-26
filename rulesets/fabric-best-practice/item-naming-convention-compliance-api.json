@@ -3,6 +3,7 @@
   "rules": [
     {
       "id": "API_ITEM_NAMING_CONVENTION_COMPLIANCE",
+      "tags": ["governance", "naming", "workspace"],
       "name": "Item Naming Convention Compliance",
       "description": "Returns item display names that do not start with one of the approved domain prefixes. WARNING: This rule was AI-generated and tested only against sample fixtures. Review before production use.",
       "itemType": "none",

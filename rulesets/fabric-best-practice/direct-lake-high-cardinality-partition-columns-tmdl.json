@@ -3,6 +3,7 @@
   "rules": [
     {
       "id": "SEMANTICMODEL_DIRECTLAKE_HIGH_CARDINALITY_PARTITIONS_TMDL",
+      "tags": ["semantic-model", "direct-lake", "performance"],
       "name": "Direct Lake Tables Must Not Partition on High-Cardinality Columns (TMDL)",
       "description": "TMDL variant of rule 35. Returns the table .tmdl file name when a column/partition is annotated 'highCardinality = true'. Remove high-cardinality columns from Direct Lake partition keys. WARNING: This rule was AI-generated and tested only against sample fixtures. Review before production use.",
       "itemType": "SemanticModel",

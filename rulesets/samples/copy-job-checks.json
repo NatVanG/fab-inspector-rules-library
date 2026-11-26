@@ -4,7 +4,7 @@
   "rules": [
     {
       "id": "CHECK_COPYJOB_JOBMODE",
-      "tags": ["configuration", "batch"],
+      "tags": ["configuration", "data-pipeline", "copy-job"],
       "name": "Copy jobs use Batch mode",
       "description": "Checks the jobMode property in each copyjob-content.json definition.",
       "itemType": "CopyJob",
@@ -16,6 +16,7 @@
     },
     {
       "id": "CHECK_COPYJOB_JOBMODE2",
+      "tags": ["configuration", "data-pipeline", "copy-job"],
       "name": "First copy job definition uses Batch mode",
       "description": "Queries the first copy job definition and compares its job mode with Batch.",
       "itemType": "CopyJob",
@@ -31,7 +32,7 @@
     },
     {
       "id": "CHECK_COPYJOB_JOBMODE3",
-      "tags": ["configuration", "batch"],
+      "tags": ["configuration", "data-pipeline", "copy-job"],
       "name": "All copy job definitions use Batch mode",
       "description": "A disabled alternative from the upstream examples. Enable it only after reviewing the check for your definitions.",
       "itemType": "CopyJob",

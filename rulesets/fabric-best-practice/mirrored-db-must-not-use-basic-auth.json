@@ -3,6 +3,7 @@
   "rules": [
     {
       "id": "MIRROREDDB_MUST_NOT_USE_BASIC_AUTH",
+      "tags": ["security", "authentication", "database"],
       "name": "Mirrored Database Connection Must Not Use Basic Authentication",
       "description": "Returns a marker when credentialType indicates basic authentication. WARNING: This rule was AI-generated and tested only against sample fixtures. Review before production use.",
       "itemType": "MirroredDatabase",

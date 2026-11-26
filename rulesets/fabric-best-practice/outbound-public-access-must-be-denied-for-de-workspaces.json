@@ -3,6 +3,7 @@
   "rules": [
     {
       "id": "API_OUTBOUND_PUBLIC_ACCESS_MUST_BE_DENIED_FOR_DE",
+      "tags": ["security", "networking", "data-engineering"],
       "name": "Outbound Public Access Must Be Denied for Data Engineering Workspaces",
       "description": "If the workspace contains Notebook, Lakehouse, or SparkJobDefinition items, returns a marker when outbound defaultAction is not Deny. WARNING: This rule was AI-generated and tested only against sample fixtures. Review before production use.",
       "itemType": "none",

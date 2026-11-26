@@ -3,6 +3,7 @@
   "rules": [
     {
       "id": "API_WORKSPACE_GIT_CONNECTION_REQUIRED",
+      "tags": ["workspace", "git", "governance"],
       "name": "Workspace Must Have an Initialized Git Connection",
       "description": "Returns the Git connection state unless it is ConnectedAndInitialized. Connect the workspace to an approved Git repository and initialize synchronization.",
       "itemType": "none",
