@@ -34,9 +34,8 @@
       "id": "CHECK_COPYJOB_JOBMODE3",
       "tags": ["configuration", "data-pipeline", "copy-job"],
       "name": "All copy job definitions use Batch mode",
-      "description": "A disabled alternative from the upstream examples. Enable it only after reviewing the check for your definitions.",
+      "description": "An alternative from the upstream examples. Review the check for your definitions before use.",
       "itemType": "CopyJob",
-      "disabled": true,
       "test": [
         {
           "all": [

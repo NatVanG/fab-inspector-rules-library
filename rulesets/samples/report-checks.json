@@ -8,7 +8,6 @@
       "name": "Reports contain no more than 10 pages",
       "description": "Counts report pages and fails when the total exceeds the sample limit of 10.",
       "itemType": "Report",
-      "disabled": false,
       "test": [
         {
           "<=": [
@@ -30,7 +29,6 @@
       "name": "Visible report pages fit within 720 pixels",
       "description": "Returns the names of visible pages taller than 720 pixels. Hidden pages are excluded.",
       "itemType": "Report",
-      "disabled": false,
       "test": [
         {
           "map": [
